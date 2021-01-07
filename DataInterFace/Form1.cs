@@ -1024,8 +1024,8 @@ namespace DataInterFace
         }
         private void button1_Click_2(object sender, EventArgs e)
         {
-            Form2 f2 = new Form2();
-            f2.Show();
+            //Form2 f2 = new Form2();
+            //f2.Show();
         }
 
         private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
