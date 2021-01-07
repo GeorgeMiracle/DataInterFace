@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="UFSystem" Class="UFsysDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.0.165;Initial Catalog=UFSystem;Persist Security Info=True;User ID=sa" SettingsObjectName="UFDB.Properties.Settings" SettingsPropertyName="UFSystemConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.UA_Account" Member="UA_Account">
+    <Type Name="UA_Account">
+      <Column Name="iSysID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="cAcc_Id" Type="System.String" DbType="NVarChar(3) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="cAcc_Name" Type="System.String" DbType="NVarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="cAcc_Path" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="iYear" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="iMonth" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="cAcc_Master" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="cCurCode" Type="System.String" DbType="NVarChar(4) NOT NULL" CanBeNull="false" />
+      <Column Name="cCurName" Type="System.String" DbType="NVarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="cUnitName" Type="System.String" DbType="NVarChar(80) NOT NULL" CanBeNull="false" />
+      <Column Name="cUnitAbbre" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
+      <Column Name="cUnitAddr" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="cUnitZap" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="cUnitTel" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="cUnitFax" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="cUnitEMail" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
+      <Column Name="cUnitTaxNo" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="cUnitLP" Type="System.String" DbType="NVarChar(16)" CanBeNull="true" />
+      <Column Name="cFinKind" Type="System.String" DbType="NVarChar(16)" CanBeNull="true" />
+      <Column Name="cFinType" Type="System.String" DbType="NVarChar(16)" CanBeNull="true" />
+      <Column Name="cEntType" Type="System.String" DbType="NVarChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="cTradeKind" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="cIsCompanyVer" Type="System.Char" DbType="NChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="cDomain" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
+      <Column Name="cOrgCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="cUnitNameEn" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="cUnitAddress1En" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="cUnitAddress2En" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="cUnitAddress3En" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="cUnitAddress4En" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="cCustomCode" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="cPortCode" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="cCustomBrokerCode" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="cDescription" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="cIndustryCode" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="bIM" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="bIntelligentInput" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="cESpaceID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="UA_Account_UA_Account_sub" Member="UA_Account_sub" ThisKey="cAcc_Id" OtherKey="cAcc_Id" Type="UA_Account_sub" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UA_Account_sub" Member="UA_Account_sub">
+    <Type Name="UA_Account_sub">
+      <Column Name="cAcc_Id" Type="System.String" DbType="NVarChar(3) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="iYear" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="cSub_Id" Type="System.String" DbType="NVarChar(2) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="bIsDelete" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="bClosing" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="iModiPeri" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="dSubSysUsed" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="cUser_Id" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="dSubOriDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="UA_Account_UA_Account_sub" Member="UA_Account" ThisKey="cAcc_Id" OtherKey="cAcc_Id" Type="UA_Account" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UA_AccountDatabase" Member="UA_AccountDatabase">
+    <Type Name="UA_AccountDatabase">
+      <Column Name="cAcc_Id" Type="System.String" DbType="NVarChar(3) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="iBeginYear" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="iEndYear" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="cDatabase" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

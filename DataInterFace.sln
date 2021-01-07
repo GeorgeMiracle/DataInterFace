@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.960
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataInterFace", "DataInterFace\DataInterFace.csproj", "{BCEAFEF1-5197-49FB-85AC-5107A43823D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UFDB", "UFDB\UFDB.csproj", "{AB9CE8A9-98B2-4F63-8648-CB046BEF1CB7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BCEAFEF1-5197-49FB-85AC-5107A43823D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCEAFEF1-5197-49FB-85AC-5107A43823D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCEAFEF1-5197-49FB-85AC-5107A43823D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCEAFEF1-5197-49FB-85AC-5107A43823D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB9CE8A9-98B2-4F63-8648-CB046BEF1CB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB9CE8A9-98B2-4F63-8648-CB046BEF1CB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB9CE8A9-98B2-4F63-8648-CB046BEF1CB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB9CE8A9-98B2-4F63-8648-CB046BEF1CB7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A9AFF681-9DB9-43E1-9D55-88ABA813CE1D}
+	EndGlobalSection
+EndGlobal

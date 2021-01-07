@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="UFDATA_001_2018" Class="UFDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=UFDATA_001_2018;Persist Security Info=True;User ID=sa" SettingsObjectName="UFDB.Properties.Settings" SettingsPropertyName="UFDATA_001_2018ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.GL_accvouch" Member="GL_accvouch">
+    <Type Name="GL_accvouch">
+      <Column Name="i_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="iperiod" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="csign" Type="System.String" DbType="NVarChar(8)" CanBeNull="true" />
+      <Column Name="isignseq" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ino_id" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="inid" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="dbill_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="idoc" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="cbill" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="ccheck" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="cbook" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="ibook" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="ccashier" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="iflag" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="ctext1" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="ctext2" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="cdigest" Type="System.String" DbType="NVarChar(120)" CanBeNull="true" />
+      <Column Name="ccode" Type="System.String" DbType="NVarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="cexch_name" Type="System.String" DbType="NVarChar(8)" CanBeNull="true" />
+      <Column Name="md" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="mc" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="md_f" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="mc_f" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="nfrat" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="nd_s" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="nc_s" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="csettle" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="cn_id" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="dt_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="cdept_id" Type="System.String" DbType="NVarChar(12)" CanBeNull="true" />
+      <Column Name="cperson_id" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="ccus_id" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="csup_id" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="citem_id" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="citem_class" Type="System.String" DbType="NVarChar(2)" CanBeNull="true" />
+      <Column Name="cname" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
+      <Column Name="ccode_equal" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="iflagbank" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="iflagPerson" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="bdelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="coutaccset" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="ioutyear" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="coutsysname" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="coutsysver" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="doutbilldate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ioutperiod" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="coutsign" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="coutno_id" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="doutdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="coutbillsign" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="coutid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="bvouchedit" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="bvouchAddordele" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="bvouchmoneyhold" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="bvalueedit" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="bcodeedit" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ccodecontrol" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="bPCSedit" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="bDeptedit" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="bItemedit" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="bCusSupInput" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="cDefine1" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="cDefine2" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="cDefine3" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="cDefine4" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="cDefine5" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="cDefine6" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="cDefine7" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="cDefine8" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
+      <Column Name="cDefine9" Type="System.String" DbType="NVarChar(8)" CanBeNull="true" />
+      <Column Name="cDefine10" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="cDefine11" Type="System.String" DbType="NVarChar(120)" CanBeNull="true" />
+      <Column Name="cDefine12" Type="System.String" DbType="NVarChar(120)" CanBeNull="true" />
+      <Column Name="cDefine13" Type="System.String" DbType="NVarChar(120)" CanBeNull="true" />
+      <Column Name="cDefine14" Type="System.String" DbType="NVarChar(120)" CanBeNull="true" />
+      <Column Name="cDefine15" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="cDefine16" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="dReceive" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="cWLDZFlag" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="dWLDZTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="bFlagOut" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="iBG_OverFlag" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="cBG_Auditor" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
+      <Column Name="dBG_AuditTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="cBG_AuditOpinion" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="bWH_BgFlag" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ssxznum" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CErrReason" Type="System.String" DbType="NVarChar(512)" CanBeNull="true" />
+      <Column Name="BG_AuditRemark" Type="System.String" DbType="NVarChar(512)" CanBeNull="true" />
+      <Column Name="cBudgetBuffer" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="iBG_ControlResult" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="NCVouchID" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="daudit_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="RowGuid" Type="System.String" DbType="VarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="cBankReconNo" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="iyear" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="iYPeriod" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="wllqDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="wllqPeriod" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tvouchtime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.code" Member="code">
+    <Type Name="code">
+      <Column Name="i_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="cclass" Type="System.String" DbType="NVarChar(14) NOT NULL" CanBeNull="false" />
+      <Column Name="cclass_engl" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="cclassany" Type="System.String" DbType="NVarChar(14)" CanBeNull="true" />
+      <Column Name="cclassany_engl" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ccode" Type="System.String" DbType="NVarChar(40) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ccode_name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ccode_engl" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="igrade" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="bproperty" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="cbook_type" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="cbook_type_engl" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="chelp" Type="System.String" DbType="NVarChar(6)" CanBeNull="true" />
+      <Column Name="cexch_name" Type="System.String" DbType="NVarChar(8)" CanBeNull="true" />
+      <Column Name="cmeasure" Type="System.String" DbType="NVarChar(6)" CanBeNull="true" />
+      <Column Name="bperson" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="bcus" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="bsup" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="bdept" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="bitem" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="cass_item" Type="System.String" DbType="NVarChar(2)" CanBeNull="true" />
+      <Column Name="br" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="be" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="cgather" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="bend" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="bexchange" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="bcash" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="bbank" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="bused" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="bd_c" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="dbegin" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="dend" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="itrans" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="bclose" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="cother" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="iotherused" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="bcDefine1" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="bcDefine2" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="bcDefine3" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="bcDefine4" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="bcDefine5" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="bcDefine6" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="bcDefine7" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="bcDefine8" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="bcDefine9" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="bcDefine10" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="iViewItem" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="bGCJS" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="bCashItem" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="pubufts" Type="System.Data.Linq.Binary" DbType="rowversion" CanBeNull="true" IsVersion="true" />
+      <Column Name="bcDefine11" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="bcDefine12" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="bcDefine13" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="bcDefine14" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="bcDefine15" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="bcDefine16" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="bReport" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="cUserDefineType" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="iyear" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.exch" Member="exch">
+    <Type Name="exch">
+      <Column Name="i_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="cexch_name" Type="System.String" DbType="NVarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="iperiod" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="itype" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="cdate" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="nflat" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="pubufts" Type="System.Data.Linq.Binary" DbType="rowversion" CanBeNull="true" IsVersion="true" />
+      <Column Name="iYear" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GL_CashTable" Member="GL_CashTable">
+    <Type Name="GL_CashTable">
+      <Column Name="i_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="iPeriod" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="iSignSeq" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="iNo_id" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="inid" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="cCashItem" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="md" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="mc" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="ccode" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
+      <Column Name="md_f" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="mc_f" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="nd_s" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="nc_s" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="cdept_id" Type="System.String" DbType="NVarChar(12)" CanBeNull="true" />
+      <Column Name="cperson_id" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="ccus_id" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="csup_id" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="citem_class" Type="System.String" DbType="NVarChar(2)" CanBeNull="true" />
+      <Column Name="citem_id" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="cDefine1" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="cDefine2" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="cDefine3" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="cDefine4" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="cDefine5" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="cDefine6" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="cDefine7" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="cDefine8" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
+      <Column Name="cDefine9" Type="System.String" DbType="NVarChar(8)" CanBeNull="true" />
+      <Column Name="cDefine10" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="cDefine11" Type="System.String" DbType="NVarChar(120)" CanBeNull="true" />
+      <Column Name="cDefine12" Type="System.String" DbType="NVarChar(120)" CanBeNull="true" />
+      <Column Name="cDefine13" Type="System.String" DbType="NVarChar(120)" CanBeNull="true" />
+      <Column Name="cDefine14" Type="System.String" DbType="NVarChar(120)" CanBeNull="true" />
+      <Column Name="cDefine15" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="cDefine16" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="dbill_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="csign" Type="System.String" DbType="NVarChar(8)" CanBeNull="true" />
+      <Column Name="iyear" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="iYPeriod" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RowGuid" Type="System.String" DbType="VarChar(60) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>
