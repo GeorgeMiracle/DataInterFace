@@ -1026,6 +1026,7 @@ namespace DataInterFace
         {
             Form2 f2 = new Form2();
             f2.Show();
+            Console.Write("222");
         }
 
         private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
