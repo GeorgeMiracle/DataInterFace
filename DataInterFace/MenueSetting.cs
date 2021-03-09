@@ -12,9 +12,16 @@ namespace DataInterFace
         {
             try
             {
+                if (cMenuId == "UA1")
+                {
+                    this.ShowEmbedControl(new Form1(), cMenuId, true);
 
-                this.ShowEmbedControl(new Form1(), cMenuId, true);
+                }
+                if (cMenuId == "UA2")
+                {
+                    this.ShowEmbedControl(new FrmAr(), cMenuId, true);
 
+                }
             }
             catch (Exception ex)
             {

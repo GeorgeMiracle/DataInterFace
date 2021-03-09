@@ -542,7 +542,7 @@ namespace DataInterFace
                                 h_PIM.dMakeDateEx = Convert.ToDateTime(items.appDate);
                                 h_PIM.dMakeDate = DateTime.Now;
                                 h_PIM.belongMonth = items.belongMonth;
-                                h_PIM.TotalAmount = Convert.ToDecimal(items.exchangeReate) == 0 ? (Convert.ToDecimal(items.Sub_total) + Convert.ToDecimal(items.bankServicePrice)) : Convert.ToDecimal(items.exchangeReate) * (Convert.ToDecimal(items.Sub_total) + Convert.ToDecimal(items.bankServicePrice));
+                                h_PIM.TotalAmount = Convert.ToDecimal(item.First().exchangeReate) == 0 ? (item.Sum(x => Convert.ToDecimal(x.Sub_total)) + item.Sum(x => Convert.ToDecimal(x.bankServicePrice)) + item.Sum(x => Convert.ToDecimal(x.exchanLossPrice))) : (item.Sum(x => Convert.ToDecimal(Sub_total)) + item.Sum(x => Convert.ToDecimal(x.bankServicePrice)) + item.Sum(x => Convert.ToDecimal(x.exchanLossPrice))) / Convert.ToDecimal(item.First().exchangeReate);
                                 h_PIM.iswfcontrolled = 0;
                                 h_PIM.UAPRuntime_RowNO = 1;
                                 h_PIM.ID = guid;
@@ -695,7 +695,7 @@ namespace DataInterFace
                             h_PIM.dMakeDateEx = Convert.ToDateTime(item.First().appDate);
                             h_PIM.dMakeDate = DateTime.Now;
                             h_PIM.belongMonth = item.First().belongMonth;
-                            h_PIM.TotalAmount = Convert.ToDecimal(item.First().exchangeReate) == 0 ? (item.Sum(x=>Convert.ToDecimal(x.Sub_total)) + item.Sum(x=>Convert.ToDecimal( x.bankServicePrice)) ): Convert.ToDecimal(item.First().exchangeReate) * (item.Sum(x=>Convert.ToDecimal(Sub_total) )+ item.Sum(x=>Convert.ToDecimal(x.bankServicePrice)) );
+                            h_PIM.TotalAmount = Convert.ToDecimal(item.First().exchangeReate) == 0 ? (item.Sum(x=>Convert.ToDecimal(x.Sub_total)) + item.Sum(x=>Convert.ToDecimal( x.bankServicePrice) ) + item.Sum(x => Convert.ToDecimal(x.exchanLossPrice))) :  (item.Sum(x=>Convert.ToDecimal(Sub_total) )+ item.Sum(x=>Convert.ToDecimal(x.bankServicePrice)) + item.Sum(x => Convert.ToDecimal(x.exchanLossPrice)))/ Convert.ToDecimal(item.First().exchangeReate);
                             h_PIM.iswfcontrolled = 0;
                             h_PIM.UAPRuntime_RowNO = 1;
                             h_PIM.ID = guid;
@@ -1295,7 +1295,7 @@ namespace DataInterFace
                     string ExchageDate = clsDataConvert.ToDateStr(table.Rows[i]["ExchageDate"], "yyyy-MM-dd");
                     string ExchangeRate = clsDataConvert.ToDecimal(table.Rows[i]["ExchangeRate"]) == 0 ? "" : ":" + clsDataConvert.ToString(table.Rows[i]["ExchangeRate"]);
                     string totalAmount = clsDataConvert.ToString(table.Rows[i]["totalAmount"]);
-
+                    string belongMonth = clsDataConvert.ToDateStr(table.Rows[i]["belongMonth"], "yyyy-MM");
 
                     string strPiDetailSql = "SELECT  ROW_NUMBER() OVER(ORDER BY item) AS iNO ,itemName as cInvName, CAST(price AS DECIMAL(18,2))  as iSum  FROM H_PID where ID='" + id + "' ";
                     DataTable dataTable = clsDbHelperSQL.Query(DbManager.U8Conn, strPiDetailSql).Tables[0];
@@ -1313,6 +1313,7 @@ namespace DataInterFace
                     designer.SetDataSource("ExchangeRate", ExchangeRate);
                     designer.SetDataSource("ExchageDate", ExchageDate);
                     designer.SetDataSource("totalAmount", totalAmount);
+                    designer.SetDataSource("SSYF", belongMonth);
 
                     designer.SetDataSource(dataTable);
                     designer.Process();

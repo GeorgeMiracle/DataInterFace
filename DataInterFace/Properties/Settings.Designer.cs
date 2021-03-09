@@ -43,5 +43,16 @@ namespace DataInterFace.Properties {
                 return ((string)(this["UFDATA_998_2019ConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=7.79.52.88;Initial Catalog=UFDATA_106_2018;Persist Security Info=True" +
+            ";User ID=sa;Password=Chary@123")]
+        public string UFDATA_106_2018ConnectionString {
+            get {
+                return ((string)(this["UFDATA_106_2018ConnectionString"]));
+            }
+        }
     }
 }

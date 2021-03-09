@@ -22,7 +22,7 @@ namespace DataInterFace
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="UFDATA_998_2019")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="UFDATA_106_2018")]
 	public partial class UFDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -72,10 +72,22 @@ namespace DataInterFace
     partial void InsertSaleBillVouch_extradefine(SaleBillVouch_extradefine instance);
     partial void UpdateSaleBillVouch_extradefine(SaleBillVouch_extradefine instance);
     partial void DeleteSaleBillVouch_extradefine(SaleBillVouch_extradefine instance);
+    partial void InsertAp_CloseBill(Ap_CloseBill instance);
+    partial void UpdateAp_CloseBill(Ap_CloseBill instance);
+    partial void DeleteAp_CloseBill(Ap_CloseBill instance);
+    partial void InsertAp_CloseBill_extradefine(Ap_CloseBill_extradefine instance);
+    partial void UpdateAp_CloseBill_extradefine(Ap_CloseBill_extradefine instance);
+    partial void DeleteAp_CloseBill_extradefine(Ap_CloseBill_extradefine instance);
+    partial void InsertAp_CloseBills(Ap_CloseBills instance);
+    partial void UpdateAp_CloseBills(Ap_CloseBills instance);
+    partial void DeleteAp_CloseBills(Ap_CloseBills instance);
+    partial void InsertAp_CloseBills_extradefine(Ap_CloseBills_extradefine instance);
+    partial void UpdateAp_CloseBills_extradefine(Ap_CloseBills_extradefine instance);
+    partial void DeleteAp_CloseBills_extradefine(Ap_CloseBills_extradefine instance);
     #endregion
 		
 		public UFDataContext() : 
-				base(global::DataInterFace.Properties.Settings.Default.UFDATA_998_2019ConnectionString, mappingSource)
+				base(global::DataInterFace.Properties.Settings.Default.UFDATA_106_2018ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -213,6 +225,38 @@ namespace DataInterFace
 			get
 			{
 				return this.GetTable<SaleBillVouch_extradefine>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Ap_CloseBill> Ap_CloseBill
+		{
+			get
+			{
+				return this.GetTable<Ap_CloseBill>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Ap_CloseBill_extradefine> Ap_CloseBill_extradefine
+		{
+			get
+			{
+				return this.GetTable<Ap_CloseBill_extradefine>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Ap_CloseBills> Ap_CloseBills
+		{
+			get
+			{
+				return this.GetTable<Ap_CloseBills>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Ap_CloseBills_extradefine> Ap_CloseBills_extradefine
+		{
+			get
+			{
+				return this.GetTable<Ap_CloseBills_extradefine>();
 			}
 		}
 	}
@@ -15053,6 +15097,8 @@ namespace DataInterFace
 		
 		private EntitySet<Person> _Person;
 		
+		private EntitySet<Ap_CloseBill> _Ap_CloseBill;
+		
     #region 可扩展性方法定义
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -15137,6 +15183,7 @@ namespace DataInterFace
 		{
 			this._SaleBillVouch = new EntitySet<SaleBillVouch>(new Action<SaleBillVouch>(this.attach_SaleBillVouch), new Action<SaleBillVouch>(this.detach_SaleBillVouch));
 			this._Person = new EntitySet<Person>(new Action<Person>(this.attach_Person), new Action<Person>(this.detach_Person));
+			this._Ap_CloseBill = new EntitySet<Ap_CloseBill>(new Action<Ap_CloseBill>(this.attach_Ap_CloseBill), new Action<Ap_CloseBill>(this.detach_Ap_CloseBill));
 			OnCreated();
 		}
 		
@@ -15906,6 +15953,19 @@ namespace DataInterFace
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Department_Ap_CloseBill", Storage="_Ap_CloseBill", ThisKey="cDepCode", OtherKey="cDeptCode")]
+		public EntitySet<Ap_CloseBill> Ap_CloseBill
+		{
+			get
+			{
+				return this._Ap_CloseBill;
+			}
+			set
+			{
+				this._Ap_CloseBill.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -15945,6 +16005,18 @@ namespace DataInterFace
 		}
 		
 		private void detach_Person(Person entity)
+		{
+			this.SendPropertyChanging();
+			entity.Department = null;
+		}
+		
+		private void attach_Ap_CloseBill(Ap_CloseBill entity)
+		{
+			this.SendPropertyChanging();
+			entity.Department = this;
+		}
+		
+		private void detach_Ap_CloseBill(Ap_CloseBill entity)
 		{
 			this.SendPropertyChanging();
 			entity.Department = null;
@@ -23437,6 +23509,4948 @@ namespace DataInterFace
 					this._chdefine19 = value;
 					this.SendPropertyChanged("chdefine19");
 					this.Onchdefine19Changed();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Ap_CloseBill")]
+	public partial class Ap_CloseBill : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _cVouchType;
+		
+		private string _cVouchID;
+		
+		private System.DateTime _dVouchDate;
+		
+		private byte _iPeriod;
+		
+		private string _cDwCode;
+		
+		private string _cDeptCode;
+		
+		private string _cPerson;
+		
+		private string _cItem_Class;
+		
+		private string _cItemCode;
+		
+		private string _cSSCode;
+		
+		private string _cNoteNo;
+		
+		private string _cCoVouchType;
+		
+		private string _cCoVouchID;
+		
+		private string _cDigest;
+		
+		private string _cBankAccount;
+		
+		private string _cexch_name;
+		
+		private System.Nullable<double> _iExchRate;
+		
+		private System.Nullable<decimal> _iAmount;
+		
+		private System.Nullable<decimal> _iAmount_f;
+		
+		private System.Nullable<decimal> _iRAmount;
+		
+		private System.Nullable<decimal> _iRAmount_f;
+		
+		private string _cOperator;
+		
+		private string _cCancelMan;
+		
+		private string _cRPMan;
+		
+		private System.Nullable<bool> _bPrePay;
+		
+		private System.Nullable<bool> _bStartFlag;
+		
+		private string _cOrderNo;
+		
+		private string _cCode;
+		
+		private string _cPreCode;
+		
+		private System.Nullable<bool> _iPayForOther;
+		
+		private string _cSrcFlag;
+		
+		private string _cPzID;
+		
+		private string _cFlag;
+		
+		private System.Nullable<bool> _bSend;
+		
+		private System.Nullable<bool> _bReceived;
+		
+		private string _csItemCode;
+		
+		private int _iID;
+		
+		private string _cCancelNo;
+		
+		private string _cBank;
+		
+		private string _cNatBank;
+		
+		private string _cNatBankAccount;
+		
+		private bool _bFromBank;
+		
+		private bool _bToBank;
+		
+		private bool _bSure;
+		
+		private int _VT_ID;
+		
+		private string _cCheckMan;
+		
+		private string _cDefine1;
+		
+		private string _cDefine2;
+		
+		private string _cDefine3;
+		
+		private System.Nullable<System.DateTime> _cDefine4;
+		
+		private System.Nullable<int> _cDefine5;
+		
+		private System.Nullable<System.DateTime> _cDefine6;
+		
+		private System.Nullable<double> _cDefine7;
+		
+		private string _cDefine8;
+		
+		private string _cDefine9;
+		
+		private string _cDefine10;
+		
+		private string _cDefine11;
+		
+		private string _cDefine12;
+		
+		private string _cDefine13;
+		
+		private string _cDefine14;
+		
+		private System.Nullable<int> _cDefine15;
+		
+		private System.Nullable<double> _cDefine16;
+		
+		private System.Data.Linq.Binary _Ufts;
+		
+		private string _cItemName;
+		
+		private string _cContractType;
+		
+		private string _cContractID;
+		
+		private System.Nullable<double> _iAmount_s;
+		
+		private System.Nullable<bool> _IsWfControlled;
+		
+		private System.Nullable<byte> _iSource;
+		
+		private string _sDLCode;
+		
+		private System.Nullable<int> _RegisterFlag;
+		
+		private System.Nullable<int> _iverifystate;
+		
+		private System.Nullable<int> _ireturncount;
+		
+		private System.Nullable<System.DateTime> _dcreatesystime;
+		
+		private System.Nullable<System.DateTime> _dverifysystime;
+		
+		private System.Nullable<System.DateTime> _dmodifysystime;
+		
+		private string _cmodifier;
+		
+		private System.Nullable<System.DateTime> _dmoddate;
+		
+		private System.Nullable<System.DateTime> _dverifydate;
+		
+		private System.Nullable<short> _ibg_overflag;
+		
+		private string _cbg_auditor;
+		
+		private string _cbg_audittime;
+		
+		private System.Nullable<short> _controlresult;
+		
+		private string _cbg_itemcode;
+		
+		private string _cbg_itemname;
+		
+		private string _cbg_caliberkey1;
+		
+		private string _cbg_caliberkeyname1;
+		
+		private string _cbg_caliberkey2;
+		
+		private string _cbg_caliberkeyname2;
+		
+		private string _cbg_caliberkey3;
+		
+		private string _cbg_caliberkeyname3;
+		
+		private string _cbg_calibercode1;
+		
+		private string _cbg_calibername1;
+		
+		private string _cbg_calibercode2;
+		
+		private string _cbg_calibername2;
+		
+		private string _cbg_calibercode3;
+		
+		private string _cbg_calibername3;
+		
+		private System.Nullable<bool> _ibg_ctrl;
+		
+		private string _cbg_auditopinion;
+		
+		private string _cApplyCode;
+		
+		private string _cPZNum;
+		
+		private System.Nullable<System.DateTime> _doutbilldate;
+		
+		private string _cbg_caliberkey4;
+		
+		private string _cbg_caliberkeyname4;
+		
+		private string _cbg_caliberkey5;
+		
+		private string _cbg_caliberkeyname5;
+		
+		private string _cbg_caliberkey6;
+		
+		private string _cbg_caliberkeyname6;
+		
+		private string _cbg_calibercode4;
+		
+		private string _cbg_calibername4;
+		
+		private string _cbg_calibercode5;
+		
+		private string _cbg_calibername5;
+		
+		private string _cbg_calibercode6;
+		
+		private string _cbg_calibername6;
+		
+		private int _iPrintCount;
+		
+		private string _cReserveDeptCode;
+		
+		private System.Nullable<bool> _bDealMode;
+		
+		private System.Nullable<int> _iBusType;
+		
+		private int _iPayType;
+		
+		private string _cagentcuscode;
+		
+		private string _csysbarcode;
+		
+		private string _cCurrentAuditor;
+		
+		private System.Nullable<int> _lAcctID;
+		
+		private System.Nullable<decimal> _iNotRateAmount;
+		
+		private System.Nullable<decimal> _iNotRateAmount_f;
+		
+		private EntitySet<Ap_CloseBills> _Ap_CloseBills;
+		
+		private EntityRef<Department> _Department;
+		
+    #region 可扩展性方法定义
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OncVouchTypeChanging(string value);
+    partial void OncVouchTypeChanged();
+    partial void OncVouchIDChanging(string value);
+    partial void OncVouchIDChanged();
+    partial void OndVouchDateChanging(System.DateTime value);
+    partial void OndVouchDateChanged();
+    partial void OniPeriodChanging(byte value);
+    partial void OniPeriodChanged();
+    partial void OncDwCodeChanging(string value);
+    partial void OncDwCodeChanged();
+    partial void OncDeptCodeChanging(string value);
+    partial void OncDeptCodeChanged();
+    partial void OncPersonChanging(string value);
+    partial void OncPersonChanged();
+    partial void OncItem_ClassChanging(string value);
+    partial void OncItem_ClassChanged();
+    partial void OncItemCodeChanging(string value);
+    partial void OncItemCodeChanged();
+    partial void OncSSCodeChanging(string value);
+    partial void OncSSCodeChanged();
+    partial void OncNoteNoChanging(string value);
+    partial void OncNoteNoChanged();
+    partial void OncCoVouchTypeChanging(string value);
+    partial void OncCoVouchTypeChanged();
+    partial void OncCoVouchIDChanging(string value);
+    partial void OncCoVouchIDChanged();
+    partial void OncDigestChanging(string value);
+    partial void OncDigestChanged();
+    partial void OncBankAccountChanging(string value);
+    partial void OncBankAccountChanged();
+    partial void Oncexch_nameChanging(string value);
+    partial void Oncexch_nameChanged();
+    partial void OniExchRateChanging(System.Nullable<double> value);
+    partial void OniExchRateChanged();
+    partial void OniAmountChanging(System.Nullable<decimal> value);
+    partial void OniAmountChanged();
+    partial void OniAmount_fChanging(System.Nullable<decimal> value);
+    partial void OniAmount_fChanged();
+    partial void OniRAmountChanging(System.Nullable<decimal> value);
+    partial void OniRAmountChanged();
+    partial void OniRAmount_fChanging(System.Nullable<decimal> value);
+    partial void OniRAmount_fChanged();
+    partial void OncOperatorChanging(string value);
+    partial void OncOperatorChanged();
+    partial void OncCancelManChanging(string value);
+    partial void OncCancelManChanged();
+    partial void OncRPManChanging(string value);
+    partial void OncRPManChanged();
+    partial void OnbPrePayChanging(System.Nullable<bool> value);
+    partial void OnbPrePayChanged();
+    partial void OnbStartFlagChanging(System.Nullable<bool> value);
+    partial void OnbStartFlagChanged();
+    partial void OncOrderNoChanging(string value);
+    partial void OncOrderNoChanged();
+    partial void OncCodeChanging(string value);
+    partial void OncCodeChanged();
+    partial void OncPreCodeChanging(string value);
+    partial void OncPreCodeChanged();
+    partial void OniPayForOtherChanging(System.Nullable<bool> value);
+    partial void OniPayForOtherChanged();
+    partial void OncSrcFlagChanging(string value);
+    partial void OncSrcFlagChanged();
+    partial void OncPzIDChanging(string value);
+    partial void OncPzIDChanged();
+    partial void OncFlagChanging(string value);
+    partial void OncFlagChanged();
+    partial void OnbSendChanging(System.Nullable<bool> value);
+    partial void OnbSendChanged();
+    partial void OnbReceivedChanging(System.Nullable<bool> value);
+    partial void OnbReceivedChanged();
+    partial void OncsItemCodeChanging(string value);
+    partial void OncsItemCodeChanged();
+    partial void OniIDChanging(int value);
+    partial void OniIDChanged();
+    partial void OncCancelNoChanging(string value);
+    partial void OncCancelNoChanged();
+    partial void OncBankChanging(string value);
+    partial void OncBankChanged();
+    partial void OncNatBankChanging(string value);
+    partial void OncNatBankChanged();
+    partial void OncNatBankAccountChanging(string value);
+    partial void OncNatBankAccountChanged();
+    partial void OnbFromBankChanging(bool value);
+    partial void OnbFromBankChanged();
+    partial void OnbToBankChanging(bool value);
+    partial void OnbToBankChanged();
+    partial void OnbSureChanging(bool value);
+    partial void OnbSureChanged();
+    partial void OnVT_IDChanging(int value);
+    partial void OnVT_IDChanged();
+    partial void OncCheckManChanging(string value);
+    partial void OncCheckManChanged();
+    partial void OncDefine1Changing(string value);
+    partial void OncDefine1Changed();
+    partial void OncDefine2Changing(string value);
+    partial void OncDefine2Changed();
+    partial void OncDefine3Changing(string value);
+    partial void OncDefine3Changed();
+    partial void OncDefine4Changing(System.Nullable<System.DateTime> value);
+    partial void OncDefine4Changed();
+    partial void OncDefine5Changing(System.Nullable<int> value);
+    partial void OncDefine5Changed();
+    partial void OncDefine6Changing(System.Nullable<System.DateTime> value);
+    partial void OncDefine6Changed();
+    partial void OncDefine7Changing(System.Nullable<double> value);
+    partial void OncDefine7Changed();
+    partial void OncDefine8Changing(string value);
+    partial void OncDefine8Changed();
+    partial void OncDefine9Changing(string value);
+    partial void OncDefine9Changed();
+    partial void OncDefine10Changing(string value);
+    partial void OncDefine10Changed();
+    partial void OncDefine11Changing(string value);
+    partial void OncDefine11Changed();
+    partial void OncDefine12Changing(string value);
+    partial void OncDefine12Changed();
+    partial void OncDefine13Changing(string value);
+    partial void OncDefine13Changed();
+    partial void OncDefine14Changing(string value);
+    partial void OncDefine14Changed();
+    partial void OncDefine15Changing(System.Nullable<int> value);
+    partial void OncDefine15Changed();
+    partial void OncDefine16Changing(System.Nullable<double> value);
+    partial void OncDefine16Changed();
+    partial void OnUftsChanging(System.Data.Linq.Binary value);
+    partial void OnUftsChanged();
+    partial void OncItemNameChanging(string value);
+    partial void OncItemNameChanged();
+    partial void OncContractTypeChanging(string value);
+    partial void OncContractTypeChanged();
+    partial void OncContractIDChanging(string value);
+    partial void OncContractIDChanged();
+    partial void OniAmount_sChanging(System.Nullable<double> value);
+    partial void OniAmount_sChanged();
+    partial void OnIsWfControlledChanging(System.Nullable<bool> value);
+    partial void OnIsWfControlledChanged();
+    partial void OniSourceChanging(System.Nullable<byte> value);
+    partial void OniSourceChanged();
+    partial void OnsDLCodeChanging(string value);
+    partial void OnsDLCodeChanged();
+    partial void OnRegisterFlagChanging(System.Nullable<int> value);
+    partial void OnRegisterFlagChanged();
+    partial void OniverifystateChanging(System.Nullable<int> value);
+    partial void OniverifystateChanged();
+    partial void OnireturncountChanging(System.Nullable<int> value);
+    partial void OnireturncountChanged();
+    partial void OndcreatesystimeChanging(System.Nullable<System.DateTime> value);
+    partial void OndcreatesystimeChanged();
+    partial void OndverifysystimeChanging(System.Nullable<System.DateTime> value);
+    partial void OndverifysystimeChanged();
+    partial void OndmodifysystimeChanging(System.Nullable<System.DateTime> value);
+    partial void OndmodifysystimeChanged();
+    partial void OncmodifierChanging(string value);
+    partial void OncmodifierChanged();
+    partial void OndmoddateChanging(System.Nullable<System.DateTime> value);
+    partial void OndmoddateChanged();
+    partial void OndverifydateChanging(System.Nullable<System.DateTime> value);
+    partial void OndverifydateChanged();
+    partial void Onibg_overflagChanging(System.Nullable<short> value);
+    partial void Onibg_overflagChanged();
+    partial void Oncbg_auditorChanging(string value);
+    partial void Oncbg_auditorChanged();
+    partial void Oncbg_audittimeChanging(string value);
+    partial void Oncbg_audittimeChanged();
+    partial void OncontrolresultChanging(System.Nullable<short> value);
+    partial void OncontrolresultChanged();
+    partial void Oncbg_itemcodeChanging(string value);
+    partial void Oncbg_itemcodeChanged();
+    partial void Oncbg_itemnameChanging(string value);
+    partial void Oncbg_itemnameChanged();
+    partial void Oncbg_caliberkey1Changing(string value);
+    partial void Oncbg_caliberkey1Changed();
+    partial void Oncbg_caliberkeyname1Changing(string value);
+    partial void Oncbg_caliberkeyname1Changed();
+    partial void Oncbg_caliberkey2Changing(string value);
+    partial void Oncbg_caliberkey2Changed();
+    partial void Oncbg_caliberkeyname2Changing(string value);
+    partial void Oncbg_caliberkeyname2Changed();
+    partial void Oncbg_caliberkey3Changing(string value);
+    partial void Oncbg_caliberkey3Changed();
+    partial void Oncbg_caliberkeyname3Changing(string value);
+    partial void Oncbg_caliberkeyname3Changed();
+    partial void Oncbg_calibercode1Changing(string value);
+    partial void Oncbg_calibercode1Changed();
+    partial void Oncbg_calibername1Changing(string value);
+    partial void Oncbg_calibername1Changed();
+    partial void Oncbg_calibercode2Changing(string value);
+    partial void Oncbg_calibercode2Changed();
+    partial void Oncbg_calibername2Changing(string value);
+    partial void Oncbg_calibername2Changed();
+    partial void Oncbg_calibercode3Changing(string value);
+    partial void Oncbg_calibercode3Changed();
+    partial void Oncbg_calibername3Changing(string value);
+    partial void Oncbg_calibername3Changed();
+    partial void Onibg_ctrlChanging(System.Nullable<bool> value);
+    partial void Onibg_ctrlChanged();
+    partial void Oncbg_auditopinionChanging(string value);
+    partial void Oncbg_auditopinionChanged();
+    partial void OncApplyCodeChanging(string value);
+    partial void OncApplyCodeChanged();
+    partial void OncPZNumChanging(string value);
+    partial void OncPZNumChanged();
+    partial void OndoutbilldateChanging(System.Nullable<System.DateTime> value);
+    partial void OndoutbilldateChanged();
+    partial void Oncbg_caliberkey4Changing(string value);
+    partial void Oncbg_caliberkey4Changed();
+    partial void Oncbg_caliberkeyname4Changing(string value);
+    partial void Oncbg_caliberkeyname4Changed();
+    partial void Oncbg_caliberkey5Changing(string value);
+    partial void Oncbg_caliberkey5Changed();
+    partial void Oncbg_caliberkeyname5Changing(string value);
+    partial void Oncbg_caliberkeyname5Changed();
+    partial void Oncbg_caliberkey6Changing(string value);
+    partial void Oncbg_caliberkey6Changed();
+    partial void Oncbg_caliberkeyname6Changing(string value);
+    partial void Oncbg_caliberkeyname6Changed();
+    partial void Oncbg_calibercode4Changing(string value);
+    partial void Oncbg_calibercode4Changed();
+    partial void Oncbg_calibername4Changing(string value);
+    partial void Oncbg_calibername4Changed();
+    partial void Oncbg_calibercode5Changing(string value);
+    partial void Oncbg_calibercode5Changed();
+    partial void Oncbg_calibername5Changing(string value);
+    partial void Oncbg_calibername5Changed();
+    partial void Oncbg_calibercode6Changing(string value);
+    partial void Oncbg_calibercode6Changed();
+    partial void Oncbg_calibername6Changing(string value);
+    partial void Oncbg_calibername6Changed();
+    partial void OniPrintCountChanging(int value);
+    partial void OniPrintCountChanged();
+    partial void OncReserveDeptCodeChanging(string value);
+    partial void OncReserveDeptCodeChanged();
+    partial void OnbDealModeChanging(System.Nullable<bool> value);
+    partial void OnbDealModeChanged();
+    partial void OniBusTypeChanging(System.Nullable<int> value);
+    partial void OniBusTypeChanged();
+    partial void OniPayTypeChanging(int value);
+    partial void OniPayTypeChanged();
+    partial void OncagentcuscodeChanging(string value);
+    partial void OncagentcuscodeChanged();
+    partial void OncsysbarcodeChanging(string value);
+    partial void OncsysbarcodeChanged();
+    partial void OncCurrentAuditorChanging(string value);
+    partial void OncCurrentAuditorChanged();
+    partial void OnlAcctIDChanging(System.Nullable<int> value);
+    partial void OnlAcctIDChanged();
+    partial void OniNotRateAmountChanging(System.Nullable<decimal> value);
+    partial void OniNotRateAmountChanged();
+    partial void OniNotRateAmount_fChanging(System.Nullable<decimal> value);
+    partial void OniNotRateAmount_fChanged();
+    #endregion
+		
+		public Ap_CloseBill()
+		{
+			this._Ap_CloseBills = new EntitySet<Ap_CloseBills>(new Action<Ap_CloseBills>(this.attach_Ap_CloseBills), new Action<Ap_CloseBills>(this.detach_Ap_CloseBills));
+			this._Department = default(EntityRef<Department>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cVouchType", DbType="NVarChar(2) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string cVouchType
+		{
+			get
+			{
+				return this._cVouchType;
+			}
+			set
+			{
+				if ((this._cVouchType != value))
+				{
+					this.OncVouchTypeChanging(value);
+					this.SendPropertyChanging();
+					this._cVouchType = value;
+					this.SendPropertyChanged("cVouchType");
+					this.OncVouchTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cVouchID", DbType="NVarChar(30) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string cVouchID
+		{
+			get
+			{
+				return this._cVouchID;
+			}
+			set
+			{
+				if ((this._cVouchID != value))
+				{
+					this.OncVouchIDChanging(value);
+					this.SendPropertyChanging();
+					this._cVouchID = value;
+					this.SendPropertyChanged("cVouchID");
+					this.OncVouchIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dVouchDate", DbType="DateTime NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public System.DateTime dVouchDate
+		{
+			get
+			{
+				return this._dVouchDate;
+			}
+			set
+			{
+				if ((this._dVouchDate != value))
+				{
+					this.OndVouchDateChanging(value);
+					this.SendPropertyChanging();
+					this._dVouchDate = value;
+					this.SendPropertyChanged("dVouchDate");
+					this.OndVouchDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iPeriod", DbType="TinyInt NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public byte iPeriod
+		{
+			get
+			{
+				return this._iPeriod;
+			}
+			set
+			{
+				if ((this._iPeriod != value))
+				{
+					this.OniPeriodChanging(value);
+					this.SendPropertyChanging();
+					this._iPeriod = value;
+					this.SendPropertyChanged("iPeriod");
+					this.OniPeriodChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDwCode", DbType="NVarChar(20) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string cDwCode
+		{
+			get
+			{
+				return this._cDwCode;
+			}
+			set
+			{
+				if ((this._cDwCode != value))
+				{
+					this.OncDwCodeChanging(value);
+					this.SendPropertyChanging();
+					this._cDwCode = value;
+					this.SendPropertyChanged("cDwCode");
+					this.OncDwCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDeptCode", DbType="NVarChar(12)", UpdateCheck=UpdateCheck.Never)]
+		public string cDeptCode
+		{
+			get
+			{
+				return this._cDeptCode;
+			}
+			set
+			{
+				if ((this._cDeptCode != value))
+				{
+					if (this._Department.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OncDeptCodeChanging(value);
+					this.SendPropertyChanging();
+					this._cDeptCode = value;
+					this.SendPropertyChanged("cDeptCode");
+					this.OncDeptCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cPerson", DbType="NVarChar(20)", UpdateCheck=UpdateCheck.Never)]
+		public string cPerson
+		{
+			get
+			{
+				return this._cPerson;
+			}
+			set
+			{
+				if ((this._cPerson != value))
+				{
+					this.OncPersonChanging(value);
+					this.SendPropertyChanging();
+					this._cPerson = value;
+					this.SendPropertyChanged("cPerson");
+					this.OncPersonChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cItem_Class", DbType="NVarChar(2)", UpdateCheck=UpdateCheck.Never)]
+		public string cItem_Class
+		{
+			get
+			{
+				return this._cItem_Class;
+			}
+			set
+			{
+				if ((this._cItem_Class != value))
+				{
+					this.OncItem_ClassChanging(value);
+					this.SendPropertyChanging();
+					this._cItem_Class = value;
+					this.SendPropertyChanged("cItem_Class");
+					this.OncItem_ClassChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cItemCode", DbType="NVarChar(60)", UpdateCheck=UpdateCheck.Never)]
+		public string cItemCode
+		{
+			get
+			{
+				return this._cItemCode;
+			}
+			set
+			{
+				if ((this._cItemCode != value))
+				{
+					this.OncItemCodeChanging(value);
+					this.SendPropertyChanging();
+					this._cItemCode = value;
+					this.SendPropertyChanged("cItemCode");
+					this.OncItemCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cSSCode", DbType="NVarChar(3)", UpdateCheck=UpdateCheck.Never)]
+		public string cSSCode
+		{
+			get
+			{
+				return this._cSSCode;
+			}
+			set
+			{
+				if ((this._cSSCode != value))
+				{
+					this.OncSSCodeChanging(value);
+					this.SendPropertyChanging();
+					this._cSSCode = value;
+					this.SendPropertyChanged("cSSCode");
+					this.OncSSCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cNoteNo", DbType="NVarChar(30)", UpdateCheck=UpdateCheck.Never)]
+		public string cNoteNo
+		{
+			get
+			{
+				return this._cNoteNo;
+			}
+			set
+			{
+				if ((this._cNoteNo != value))
+				{
+					this.OncNoteNoChanging(value);
+					this.SendPropertyChanging();
+					this._cNoteNo = value;
+					this.SendPropertyChanged("cNoteNo");
+					this.OncNoteNoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cCoVouchType", DbType="NVarChar(10)", UpdateCheck=UpdateCheck.Never)]
+		public string cCoVouchType
+		{
+			get
+			{
+				return this._cCoVouchType;
+			}
+			set
+			{
+				if ((this._cCoVouchType != value))
+				{
+					this.OncCoVouchTypeChanging(value);
+					this.SendPropertyChanging();
+					this._cCoVouchType = value;
+					this.SendPropertyChanged("cCoVouchType");
+					this.OncCoVouchTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cCoVouchID", DbType="NVarChar(30)", UpdateCheck=UpdateCheck.Never)]
+		public string cCoVouchID
+		{
+			get
+			{
+				return this._cCoVouchID;
+			}
+			set
+			{
+				if ((this._cCoVouchID != value))
+				{
+					this.OncCoVouchIDChanging(value);
+					this.SendPropertyChanging();
+					this._cCoVouchID = value;
+					this.SendPropertyChanged("cCoVouchID");
+					this.OncCoVouchIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDigest", DbType="NVarChar(255)", UpdateCheck=UpdateCheck.Never)]
+		public string cDigest
+		{
+			get
+			{
+				return this._cDigest;
+			}
+			set
+			{
+				if ((this._cDigest != value))
+				{
+					this.OncDigestChanging(value);
+					this.SendPropertyChanging();
+					this._cDigest = value;
+					this.SendPropertyChanged("cDigest");
+					this.OncDigestChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cBankAccount", DbType="NVarChar(50)", UpdateCheck=UpdateCheck.Never)]
+		public string cBankAccount
+		{
+			get
+			{
+				return this._cBankAccount;
+			}
+			set
+			{
+				if ((this._cBankAccount != value))
+				{
+					this.OncBankAccountChanging(value);
+					this.SendPropertyChanging();
+					this._cBankAccount = value;
+					this.SendPropertyChanged("cBankAccount");
+					this.OncBankAccountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cexch_name", DbType="NVarChar(8) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string cexch_name
+		{
+			get
+			{
+				return this._cexch_name;
+			}
+			set
+			{
+				if ((this._cexch_name != value))
+				{
+					this.Oncexch_nameChanging(value);
+					this.SendPropertyChanging();
+					this._cexch_name = value;
+					this.SendPropertyChanged("cexch_name");
+					this.Oncexch_nameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iExchRate", DbType="Float", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<double> iExchRate
+		{
+			get
+			{
+				return this._iExchRate;
+			}
+			set
+			{
+				if ((this._iExchRate != value))
+				{
+					this.OniExchRateChanging(value);
+					this.SendPropertyChanging();
+					this._iExchRate = value;
+					this.SendPropertyChanged("iExchRate");
+					this.OniExchRateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iAmount", DbType="Money", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<decimal> iAmount
+		{
+			get
+			{
+				return this._iAmount;
+			}
+			set
+			{
+				if ((this._iAmount != value))
+				{
+					this.OniAmountChanging(value);
+					this.SendPropertyChanging();
+					this._iAmount = value;
+					this.SendPropertyChanged("iAmount");
+					this.OniAmountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iAmount_f", DbType="Money", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<decimal> iAmount_f
+		{
+			get
+			{
+				return this._iAmount_f;
+			}
+			set
+			{
+				if ((this._iAmount_f != value))
+				{
+					this.OniAmount_fChanging(value);
+					this.SendPropertyChanging();
+					this._iAmount_f = value;
+					this.SendPropertyChanged("iAmount_f");
+					this.OniAmount_fChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iRAmount", DbType="Money", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<decimal> iRAmount
+		{
+			get
+			{
+				return this._iRAmount;
+			}
+			set
+			{
+				if ((this._iRAmount != value))
+				{
+					this.OniRAmountChanging(value);
+					this.SendPropertyChanging();
+					this._iRAmount = value;
+					this.SendPropertyChanged("iRAmount");
+					this.OniRAmountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iRAmount_f", DbType="Money", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<decimal> iRAmount_f
+		{
+			get
+			{
+				return this._iRAmount_f;
+			}
+			set
+			{
+				if ((this._iRAmount_f != value))
+				{
+					this.OniRAmount_fChanging(value);
+					this.SendPropertyChanging();
+					this._iRAmount_f = value;
+					this.SendPropertyChanged("iRAmount_f");
+					this.OniRAmount_fChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cOperator", DbType="NVarChar(20) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string cOperator
+		{
+			get
+			{
+				return this._cOperator;
+			}
+			set
+			{
+				if ((this._cOperator != value))
+				{
+					this.OncOperatorChanging(value);
+					this.SendPropertyChanging();
+					this._cOperator = value;
+					this.SendPropertyChanged("cOperator");
+					this.OncOperatorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cCancelMan", DbType="NVarChar(20)", UpdateCheck=UpdateCheck.Never)]
+		public string cCancelMan
+		{
+			get
+			{
+				return this._cCancelMan;
+			}
+			set
+			{
+				if ((this._cCancelMan != value))
+				{
+					this.OncCancelManChanging(value);
+					this.SendPropertyChanging();
+					this._cCancelMan = value;
+					this.SendPropertyChanged("cCancelMan");
+					this.OncCancelManChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cRPMan", DbType="NVarChar(20)", UpdateCheck=UpdateCheck.Never)]
+		public string cRPMan
+		{
+			get
+			{
+				return this._cRPMan;
+			}
+			set
+			{
+				if ((this._cRPMan != value))
+				{
+					this.OncRPManChanging(value);
+					this.SendPropertyChanging();
+					this._cRPMan = value;
+					this.SendPropertyChanged("cRPMan");
+					this.OncRPManChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bPrePay", DbType="Bit", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<bool> bPrePay
+		{
+			get
+			{
+				return this._bPrePay;
+			}
+			set
+			{
+				if ((this._bPrePay != value))
+				{
+					this.OnbPrePayChanging(value);
+					this.SendPropertyChanging();
+					this._bPrePay = value;
+					this.SendPropertyChanged("bPrePay");
+					this.OnbPrePayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bStartFlag", DbType="Bit", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<bool> bStartFlag
+		{
+			get
+			{
+				return this._bStartFlag;
+			}
+			set
+			{
+				if ((this._bStartFlag != value))
+				{
+					this.OnbStartFlagChanging(value);
+					this.SendPropertyChanging();
+					this._bStartFlag = value;
+					this.SendPropertyChanged("bStartFlag");
+					this.OnbStartFlagChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cOrderNo", DbType="NVarChar(30)", UpdateCheck=UpdateCheck.Never)]
+		public string cOrderNo
+		{
+			get
+			{
+				return this._cOrderNo;
+			}
+			set
+			{
+				if ((this._cOrderNo != value))
+				{
+					this.OncOrderNoChanging(value);
+					this.SendPropertyChanging();
+					this._cOrderNo = value;
+					this.SendPropertyChanged("cOrderNo");
+					this.OncOrderNoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cCode", DbType="NVarChar(40)", UpdateCheck=UpdateCheck.Never)]
+		public string cCode
+		{
+			get
+			{
+				return this._cCode;
+			}
+			set
+			{
+				if ((this._cCode != value))
+				{
+					this.OncCodeChanging(value);
+					this.SendPropertyChanging();
+					this._cCode = value;
+					this.SendPropertyChanged("cCode");
+					this.OncCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cPreCode", DbType="NVarChar(40)", UpdateCheck=UpdateCheck.Never)]
+		public string cPreCode
+		{
+			get
+			{
+				return this._cPreCode;
+			}
+			set
+			{
+				if ((this._cPreCode != value))
+				{
+					this.OncPreCodeChanging(value);
+					this.SendPropertyChanging();
+					this._cPreCode = value;
+					this.SendPropertyChanged("cPreCode");
+					this.OncPreCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iPayForOther", DbType="Bit", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<bool> iPayForOther
+		{
+			get
+			{
+				return this._iPayForOther;
+			}
+			set
+			{
+				if ((this._iPayForOther != value))
+				{
+					this.OniPayForOtherChanging(value);
+					this.SendPropertyChanging();
+					this._iPayForOther = value;
+					this.SendPropertyChanged("iPayForOther");
+					this.OniPayForOtherChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cSrcFlag", DbType="NVarChar(2)", UpdateCheck=UpdateCheck.Never)]
+		public string cSrcFlag
+		{
+			get
+			{
+				return this._cSrcFlag;
+			}
+			set
+			{
+				if ((this._cSrcFlag != value))
+				{
+					this.OncSrcFlagChanging(value);
+					this.SendPropertyChanging();
+					this._cSrcFlag = value;
+					this.SendPropertyChanged("cSrcFlag");
+					this.OncSrcFlagChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cPzID", DbType="NVarChar(30)", UpdateCheck=UpdateCheck.Never)]
+		public string cPzID
+		{
+			get
+			{
+				return this._cPzID;
+			}
+			set
+			{
+				if ((this._cPzID != value))
+				{
+					this.OncPzIDChanging(value);
+					this.SendPropertyChanging();
+					this._cPzID = value;
+					this.SendPropertyChanged("cPzID");
+					this.OncPzIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cFlag", DbType="NVarChar(2) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string cFlag
+		{
+			get
+			{
+				return this._cFlag;
+			}
+			set
+			{
+				if ((this._cFlag != value))
+				{
+					this.OncFlagChanging(value);
+					this.SendPropertyChanging();
+					this._cFlag = value;
+					this.SendPropertyChanged("cFlag");
+					this.OncFlagChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bSend", DbType="Bit", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<bool> bSend
+		{
+			get
+			{
+				return this._bSend;
+			}
+			set
+			{
+				if ((this._bSend != value))
+				{
+					this.OnbSendChanging(value);
+					this.SendPropertyChanging();
+					this._bSend = value;
+					this.SendPropertyChanged("bSend");
+					this.OnbSendChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bReceived", DbType="Bit", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<bool> bReceived
+		{
+			get
+			{
+				return this._bReceived;
+			}
+			set
+			{
+				if ((this._bReceived != value))
+				{
+					this.OnbReceivedChanging(value);
+					this.SendPropertyChanging();
+					this._bReceived = value;
+					this.SendPropertyChanged("bReceived");
+					this.OnbReceivedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_csItemCode", DbType="NVarChar(20)", UpdateCheck=UpdateCheck.Never)]
+		public string csItemCode
+		{
+			get
+			{
+				return this._csItemCode;
+			}
+			set
+			{
+				if ((this._csItemCode != value))
+				{
+					this.OncsItemCodeChanging(value);
+					this.SendPropertyChanging();
+					this._csItemCode = value;
+					this.SendPropertyChanged("csItemCode");
+					this.OncsItemCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iID", DbType="Int NOT NULL", IsPrimaryKey=true, UpdateCheck=UpdateCheck.Never)]
+		public int iID
+		{
+			get
+			{
+				return this._iID;
+			}
+			set
+			{
+				if ((this._iID != value))
+				{
+					this.OniIDChanging(value);
+					this.SendPropertyChanging();
+					this._iID = value;
+					this.SendPropertyChanged("iID");
+					this.OniIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cCancelNo", DbType="NVarChar(20)", UpdateCheck=UpdateCheck.Never)]
+		public string cCancelNo
+		{
+			get
+			{
+				return this._cCancelNo;
+			}
+			set
+			{
+				if ((this._cCancelNo != value))
+				{
+					this.OncCancelNoChanging(value);
+					this.SendPropertyChanging();
+					this._cCancelNo = value;
+					this.SendPropertyChanged("cCancelNo");
+					this.OncCancelNoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cBank", DbType="NVarChar(100)", UpdateCheck=UpdateCheck.Never)]
+		public string cBank
+		{
+			get
+			{
+				return this._cBank;
+			}
+			set
+			{
+				if ((this._cBank != value))
+				{
+					this.OncBankChanging(value);
+					this.SendPropertyChanging();
+					this._cBank = value;
+					this.SendPropertyChanged("cBank");
+					this.OncBankChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cNatBank", DbType="NVarChar(100)", UpdateCheck=UpdateCheck.Never)]
+		public string cNatBank
+		{
+			get
+			{
+				return this._cNatBank;
+			}
+			set
+			{
+				if ((this._cNatBank != value))
+				{
+					this.OncNatBankChanging(value);
+					this.SendPropertyChanging();
+					this._cNatBank = value;
+					this.SendPropertyChanged("cNatBank");
+					this.OncNatBankChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cNatBankAccount", DbType="NVarChar(50)", UpdateCheck=UpdateCheck.Never)]
+		public string cNatBankAccount
+		{
+			get
+			{
+				return this._cNatBankAccount;
+			}
+			set
+			{
+				if ((this._cNatBankAccount != value))
+				{
+					this.OncNatBankAccountChanging(value);
+					this.SendPropertyChanging();
+					this._cNatBankAccount = value;
+					this.SendPropertyChanged("cNatBankAccount");
+					this.OncNatBankAccountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bFromBank", DbType="Bit NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public bool bFromBank
+		{
+			get
+			{
+				return this._bFromBank;
+			}
+			set
+			{
+				if ((this._bFromBank != value))
+				{
+					this.OnbFromBankChanging(value);
+					this.SendPropertyChanging();
+					this._bFromBank = value;
+					this.SendPropertyChanged("bFromBank");
+					this.OnbFromBankChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bToBank", DbType="Bit NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public bool bToBank
+		{
+			get
+			{
+				return this._bToBank;
+			}
+			set
+			{
+				if ((this._bToBank != value))
+				{
+					this.OnbToBankChanging(value);
+					this.SendPropertyChanging();
+					this._bToBank = value;
+					this.SendPropertyChanged("bToBank");
+					this.OnbToBankChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bSure", DbType="Bit NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public bool bSure
+		{
+			get
+			{
+				return this._bSure;
+			}
+			set
+			{
+				if ((this._bSure != value))
+				{
+					this.OnbSureChanging(value);
+					this.SendPropertyChanging();
+					this._bSure = value;
+					this.SendPropertyChanged("bSure");
+					this.OnbSureChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VT_ID", DbType="Int NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public int VT_ID
+		{
+			get
+			{
+				return this._VT_ID;
+			}
+			set
+			{
+				if ((this._VT_ID != value))
+				{
+					this.OnVT_IDChanging(value);
+					this.SendPropertyChanging();
+					this._VT_ID = value;
+					this.SendPropertyChanged("VT_ID");
+					this.OnVT_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cCheckMan", DbType="NVarChar(20)", UpdateCheck=UpdateCheck.Never)]
+		public string cCheckMan
+		{
+			get
+			{
+				return this._cCheckMan;
+			}
+			set
+			{
+				if ((this._cCheckMan != value))
+				{
+					this.OncCheckManChanging(value);
+					this.SendPropertyChanging();
+					this._cCheckMan = value;
+					this.SendPropertyChanged("cCheckMan");
+					this.OncCheckManChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDefine1", DbType="NVarChar(20)", UpdateCheck=UpdateCheck.Never)]
+		public string cDefine1
+		{
+			get
+			{
+				return this._cDefine1;
+			}
+			set
+			{
+				if ((this._cDefine1 != value))
+				{
+					this.OncDefine1Changing(value);
+					this.SendPropertyChanging();
+					this._cDefine1 = value;
+					this.SendPropertyChanged("cDefine1");
+					this.OncDefine1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDefine2", DbType="NVarChar(20)", UpdateCheck=UpdateCheck.Never)]
+		public string cDefine2
+		{
+			get
+			{
+				return this._cDefine2;
+			}
+			set
+			{
+				if ((this._cDefine2 != value))
+				{
+					this.OncDefine2Changing(value);
+					this.SendPropertyChanging();
+					this._cDefine2 = value;
+					this.SendPropertyChanged("cDefine2");
+					this.OncDefine2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDefine3", DbType="NVarChar(20)", UpdateCheck=UpdateCheck.Never)]
+		public string cDefine3
+		{
+			get
+			{
+				return this._cDefine3;
+			}
+			set
+			{
+				if ((this._cDefine3 != value))
+				{
+					this.OncDefine3Changing(value);
+					this.SendPropertyChanging();
+					this._cDefine3 = value;
+					this.SendPropertyChanged("cDefine3");
+					this.OncDefine3Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDefine4", DbType="DateTime", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<System.DateTime> cDefine4
+		{
+			get
+			{
+				return this._cDefine4;
+			}
+			set
+			{
+				if ((this._cDefine4 != value))
+				{
+					this.OncDefine4Changing(value);
+					this.SendPropertyChanging();
+					this._cDefine4 = value;
+					this.SendPropertyChanged("cDefine4");
+					this.OncDefine4Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDefine5", DbType="Int", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<int> cDefine5
+		{
+			get
+			{
+				return this._cDefine5;
+			}
+			set
+			{
+				if ((this._cDefine5 != value))
+				{
+					this.OncDefine5Changing(value);
+					this.SendPropertyChanging();
+					this._cDefine5 = value;
+					this.SendPropertyChanged("cDefine5");
+					this.OncDefine5Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDefine6", DbType="DateTime", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<System.DateTime> cDefine6
+		{
+			get
+			{
+				return this._cDefine6;
+			}
+			set
+			{
+				if ((this._cDefine6 != value))
+				{
+					this.OncDefine6Changing(value);
+					this.SendPropertyChanging();
+					this._cDefine6 = value;
+					this.SendPropertyChanged("cDefine6");
+					this.OncDefine6Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDefine7", DbType="Float", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<double> cDefine7
+		{
+			get
+			{
+				return this._cDefine7;
+			}
+			set
+			{
+				if ((this._cDefine7 != value))
+				{
+					this.OncDefine7Changing(value);
+					this.SendPropertyChanging();
+					this._cDefine7 = value;
+					this.SendPropertyChanged("cDefine7");
+					this.OncDefine7Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDefine8", DbType="NVarChar(4)", UpdateCheck=UpdateCheck.Never)]
+		public string cDefine8
+		{
+			get
+			{
+				return this._cDefine8;
+			}
+			set
+			{
+				if ((this._cDefine8 != value))
+				{
+					this.OncDefine8Changing(value);
+					this.SendPropertyChanging();
+					this._cDefine8 = value;
+					this.SendPropertyChanged("cDefine8");
+					this.OncDefine8Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDefine9", DbType="NVarChar(8)", UpdateCheck=UpdateCheck.Never)]
+		public string cDefine9
+		{
+			get
+			{
+				return this._cDefine9;
+			}
+			set
+			{
+				if ((this._cDefine9 != value))
+				{
+					this.OncDefine9Changing(value);
+					this.SendPropertyChanging();
+					this._cDefine9 = value;
+					this.SendPropertyChanged("cDefine9");
+					this.OncDefine9Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDefine10", DbType="NVarChar(60)", UpdateCheck=UpdateCheck.Never)]
+		public string cDefine10
+		{
+			get
+			{
+				return this._cDefine10;
+			}
+			set
+			{
+				if ((this._cDefine10 != value))
+				{
+					this.OncDefine10Changing(value);
+					this.SendPropertyChanging();
+					this._cDefine10 = value;
+					this.SendPropertyChanged("cDefine10");
+					this.OncDefine10Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDefine11", DbType="NVarChar(120)", UpdateCheck=UpdateCheck.Never)]
+		public string cDefine11
+		{
+			get
+			{
+				return this._cDefine11;
+			}
+			set
+			{
+				if ((this._cDefine11 != value))
+				{
+					this.OncDefine11Changing(value);
+					this.SendPropertyChanging();
+					this._cDefine11 = value;
+					this.SendPropertyChanged("cDefine11");
+					this.OncDefine11Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDefine12", DbType="NVarChar(120)", UpdateCheck=UpdateCheck.Never)]
+		public string cDefine12
+		{
+			get
+			{
+				return this._cDefine12;
+			}
+			set
+			{
+				if ((this._cDefine12 != value))
+				{
+					this.OncDefine12Changing(value);
+					this.SendPropertyChanging();
+					this._cDefine12 = value;
+					this.SendPropertyChanged("cDefine12");
+					this.OncDefine12Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDefine13", DbType="NVarChar(120)", UpdateCheck=UpdateCheck.Never)]
+		public string cDefine13
+		{
+			get
+			{
+				return this._cDefine13;
+			}
+			set
+			{
+				if ((this._cDefine13 != value))
+				{
+					this.OncDefine13Changing(value);
+					this.SendPropertyChanging();
+					this._cDefine13 = value;
+					this.SendPropertyChanged("cDefine13");
+					this.OncDefine13Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDefine14", DbType="NVarChar(120)", UpdateCheck=UpdateCheck.Never)]
+		public string cDefine14
+		{
+			get
+			{
+				return this._cDefine14;
+			}
+			set
+			{
+				if ((this._cDefine14 != value))
+				{
+					this.OncDefine14Changing(value);
+					this.SendPropertyChanging();
+					this._cDefine14 = value;
+					this.SendPropertyChanged("cDefine14");
+					this.OncDefine14Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDefine15", DbType="Int", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<int> cDefine15
+		{
+			get
+			{
+				return this._cDefine15;
+			}
+			set
+			{
+				if ((this._cDefine15 != value))
+				{
+					this.OncDefine15Changing(value);
+					this.SendPropertyChanging();
+					this._cDefine15 = value;
+					this.SendPropertyChanged("cDefine15");
+					this.OncDefine15Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDefine16", DbType="Float", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<double> cDefine16
+		{
+			get
+			{
+				return this._cDefine16;
+			}
+			set
+			{
+				if ((this._cDefine16 != value))
+				{
+					this.OncDefine16Changing(value);
+					this.SendPropertyChanging();
+					this._cDefine16 = value;
+					this.SendPropertyChanged("cDefine16");
+					this.OncDefine16Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ufts", AutoSync=AutoSync.Always, DbType="rowversion", IsDbGenerated=true, IsVersion=true, UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary Ufts
+		{
+			get
+			{
+				return this._Ufts;
+			}
+			set
+			{
+				if ((this._Ufts != value))
+				{
+					this.OnUftsChanging(value);
+					this.SendPropertyChanging();
+					this._Ufts = value;
+					this.SendPropertyChanged("Ufts");
+					this.OnUftsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cItemName", DbType="NVarChar(255)", UpdateCheck=UpdateCheck.Never)]
+		public string cItemName
+		{
+			get
+			{
+				return this._cItemName;
+			}
+			set
+			{
+				if ((this._cItemName != value))
+				{
+					this.OncItemNameChanging(value);
+					this.SendPropertyChanging();
+					this._cItemName = value;
+					this.SendPropertyChanged("cItemName");
+					this.OncItemNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cContractType", DbType="NVarChar(10)", UpdateCheck=UpdateCheck.Never)]
+		public string cContractType
+		{
+			get
+			{
+				return this._cContractType;
+			}
+			set
+			{
+				if ((this._cContractType != value))
+				{
+					this.OncContractTypeChanging(value);
+					this.SendPropertyChanging();
+					this._cContractType = value;
+					this.SendPropertyChanged("cContractType");
+					this.OncContractTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cContractID", DbType="NVarChar(64)", UpdateCheck=UpdateCheck.Never)]
+		public string cContractID
+		{
+			get
+			{
+				return this._cContractID;
+			}
+			set
+			{
+				if ((this._cContractID != value))
+				{
+					this.OncContractIDChanging(value);
+					this.SendPropertyChanging();
+					this._cContractID = value;
+					this.SendPropertyChanged("cContractID");
+					this.OncContractIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iAmount_s", DbType="Float", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<double> iAmount_s
+		{
+			get
+			{
+				return this._iAmount_s;
+			}
+			set
+			{
+				if ((this._iAmount_s != value))
+				{
+					this.OniAmount_sChanging(value);
+					this.SendPropertyChanging();
+					this._iAmount_s = value;
+					this.SendPropertyChanged("iAmount_s");
+					this.OniAmount_sChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsWfControlled", DbType="Bit", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<bool> IsWfControlled
+		{
+			get
+			{
+				return this._IsWfControlled;
+			}
+			set
+			{
+				if ((this._IsWfControlled != value))
+				{
+					this.OnIsWfControlledChanging(value);
+					this.SendPropertyChanging();
+					this._IsWfControlled = value;
+					this.SendPropertyChanged("IsWfControlled");
+					this.OnIsWfControlledChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iSource", DbType="TinyInt", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<byte> iSource
+		{
+			get
+			{
+				return this._iSource;
+			}
+			set
+			{
+				if ((this._iSource != value))
+				{
+					this.OniSourceChanging(value);
+					this.SendPropertyChanging();
+					this._iSource = value;
+					this.SendPropertyChanged("iSource");
+					this.OniSourceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sDLCode", DbType="NVarChar(30)", UpdateCheck=UpdateCheck.Never)]
+		public string sDLCode
+		{
+			get
+			{
+				return this._sDLCode;
+			}
+			set
+			{
+				if ((this._sDLCode != value))
+				{
+					this.OnsDLCodeChanging(value);
+					this.SendPropertyChanging();
+					this._sDLCode = value;
+					this.SendPropertyChanged("sDLCode");
+					this.OnsDLCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RegisterFlag", DbType="Int", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<int> RegisterFlag
+		{
+			get
+			{
+				return this._RegisterFlag;
+			}
+			set
+			{
+				if ((this._RegisterFlag != value))
+				{
+					this.OnRegisterFlagChanging(value);
+					this.SendPropertyChanging();
+					this._RegisterFlag = value;
+					this.SendPropertyChanged("RegisterFlag");
+					this.OnRegisterFlagChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iverifystate", DbType="Int", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<int> iverifystate
+		{
+			get
+			{
+				return this._iverifystate;
+			}
+			set
+			{
+				if ((this._iverifystate != value))
+				{
+					this.OniverifystateChanging(value);
+					this.SendPropertyChanging();
+					this._iverifystate = value;
+					this.SendPropertyChanged("iverifystate");
+					this.OniverifystateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ireturncount", DbType="Int", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<int> ireturncount
+		{
+			get
+			{
+				return this._ireturncount;
+			}
+			set
+			{
+				if ((this._ireturncount != value))
+				{
+					this.OnireturncountChanging(value);
+					this.SendPropertyChanging();
+					this._ireturncount = value;
+					this.SendPropertyChanged("ireturncount");
+					this.OnireturncountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dcreatesystime", DbType="DateTime", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<System.DateTime> dcreatesystime
+		{
+			get
+			{
+				return this._dcreatesystime;
+			}
+			set
+			{
+				if ((this._dcreatesystime != value))
+				{
+					this.OndcreatesystimeChanging(value);
+					this.SendPropertyChanging();
+					this._dcreatesystime = value;
+					this.SendPropertyChanged("dcreatesystime");
+					this.OndcreatesystimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dverifysystime", DbType="DateTime", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<System.DateTime> dverifysystime
+		{
+			get
+			{
+				return this._dverifysystime;
+			}
+			set
+			{
+				if ((this._dverifysystime != value))
+				{
+					this.OndverifysystimeChanging(value);
+					this.SendPropertyChanging();
+					this._dverifysystime = value;
+					this.SendPropertyChanged("dverifysystime");
+					this.OndverifysystimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dmodifysystime", DbType="DateTime", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<System.DateTime> dmodifysystime
+		{
+			get
+			{
+				return this._dmodifysystime;
+			}
+			set
+			{
+				if ((this._dmodifysystime != value))
+				{
+					this.OndmodifysystimeChanging(value);
+					this.SendPropertyChanging();
+					this._dmodifysystime = value;
+					this.SendPropertyChanged("dmodifysystime");
+					this.OndmodifysystimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cmodifier", DbType="NVarChar(20)", UpdateCheck=UpdateCheck.Never)]
+		public string cmodifier
+		{
+			get
+			{
+				return this._cmodifier;
+			}
+			set
+			{
+				if ((this._cmodifier != value))
+				{
+					this.OncmodifierChanging(value);
+					this.SendPropertyChanging();
+					this._cmodifier = value;
+					this.SendPropertyChanged("cmodifier");
+					this.OncmodifierChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dmoddate", DbType="DateTime", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<System.DateTime> dmoddate
+		{
+			get
+			{
+				return this._dmoddate;
+			}
+			set
+			{
+				if ((this._dmoddate != value))
+				{
+					this.OndmoddateChanging(value);
+					this.SendPropertyChanging();
+					this._dmoddate = value;
+					this.SendPropertyChanged("dmoddate");
+					this.OndmoddateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dverifydate", DbType="DateTime", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<System.DateTime> dverifydate
+		{
+			get
+			{
+				return this._dverifydate;
+			}
+			set
+			{
+				if ((this._dverifydate != value))
+				{
+					this.OndverifydateChanging(value);
+					this.SendPropertyChanging();
+					this._dverifydate = value;
+					this.SendPropertyChanged("dverifydate");
+					this.OndverifydateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ibg_overflag", DbType="SmallInt", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<short> ibg_overflag
+		{
+			get
+			{
+				return this._ibg_overflag;
+			}
+			set
+			{
+				if ((this._ibg_overflag != value))
+				{
+					this.Onibg_overflagChanging(value);
+					this.SendPropertyChanging();
+					this._ibg_overflag = value;
+					this.SendPropertyChanged("ibg_overflag");
+					this.Onibg_overflagChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cbg_auditor", DbType="NVarChar(20)", UpdateCheck=UpdateCheck.Never)]
+		public string cbg_auditor
+		{
+			get
+			{
+				return this._cbg_auditor;
+			}
+			set
+			{
+				if ((this._cbg_auditor != value))
+				{
+					this.Oncbg_auditorChanging(value);
+					this.SendPropertyChanging();
+					this._cbg_auditor = value;
+					this.SendPropertyChanged("cbg_auditor");
+					this.Oncbg_auditorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cbg_audittime", DbType="NVarChar(20)", UpdateCheck=UpdateCheck.Never)]
+		public string cbg_audittime
+		{
+			get
+			{
+				return this._cbg_audittime;
+			}
+			set
+			{
+				if ((this._cbg_audittime != value))
+				{
+					this.Oncbg_audittimeChanging(value);
+					this.SendPropertyChanging();
+					this._cbg_audittime = value;
+					this.SendPropertyChanged("cbg_audittime");
+					this.Oncbg_audittimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_controlresult", DbType="SmallInt", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<short> controlresult
+		{
+			get
+			{
+				return this._controlresult;
+			}
+			set
+			{
+				if ((this._controlresult != value))
+				{
+					this.OncontrolresultChanging(value);
+					this.SendPropertyChanging();
+					this._controlresult = value;
+					this.SendPropertyChanged("controlresult");
+					this.OncontrolresultChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cbg_itemcode", DbType="NVarChar(50)", UpdateCheck=UpdateCheck.Never)]
+		public string cbg_itemcode
+		{
+			get
+			{
+				return this._cbg_itemcode;
+			}
+			set
+			{
+				if ((this._cbg_itemcode != value))
+				{
+					this.Oncbg_itemcodeChanging(value);
+					this.SendPropertyChanging();
+					this._cbg_itemcode = value;
+					this.SendPropertyChanged("cbg_itemcode");
+					this.Oncbg_itemcodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cbg_itemname", DbType="NVarChar(100)", UpdateCheck=UpdateCheck.Never)]
+		public string cbg_itemname
+		{
+			get
+			{
+				return this._cbg_itemname;
+			}
+			set
+			{
+				if ((this._cbg_itemname != value))
+				{
+					this.Oncbg_itemnameChanging(value);
+					this.SendPropertyChanging();
+					this._cbg_itemname = value;
+					this.SendPropertyChanged("cbg_itemname");
+					this.Oncbg_itemnameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cbg_caliberkey1", DbType="NVarChar(50)", UpdateCheck=UpdateCheck.Never)]
+		public string cbg_caliberkey1
+		{
+			get
+			{
+				return this._cbg_caliberkey1;
+			}
+			set
+			{
+				if ((this._cbg_caliberkey1 != value))
+				{
+					this.Oncbg_caliberkey1Changing(value);
+					this.SendPropertyChanging();
+					this._cbg_caliberkey1 = value;
+					this.SendPropertyChanged("cbg_caliberkey1");
+					this.Oncbg_caliberkey1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cbg_caliberkeyname1", DbType="NVarChar(100)", UpdateCheck=UpdateCheck.Never)]
+		public string cbg_caliberkeyname1
+		{
+			get
+			{
+				return this._cbg_caliberkeyname1;
+			}
+			set
+			{
+				if ((this._cbg_caliberkeyname1 != value))
+				{
+					this.Oncbg_caliberkeyname1Changing(value);
+					this.SendPropertyChanging();
+					this._cbg_caliberkeyname1 = value;
+					this.SendPropertyChanged("cbg_caliberkeyname1");
+					this.Oncbg_caliberkeyname1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cbg_caliberkey2", DbType="NVarChar(50)", UpdateCheck=UpdateCheck.Never)]
+		public string cbg_caliberkey2
+		{
+			get
+			{
+				return this._cbg_caliberkey2;
+			}
+			set
+			{
+				if ((this._cbg_caliberkey2 != value))
+				{
+					this.Oncbg_caliberkey2Changing(value);
+					this.SendPropertyChanging();
+					this._cbg_caliberkey2 = value;
+					this.SendPropertyChanged("cbg_caliberkey2");
+					this.Oncbg_caliberkey2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cbg_caliberkeyname2", DbType="NVarChar(100)", UpdateCheck=UpdateCheck.Never)]
+		public string cbg_caliberkeyname2
+		{
+			get
+			{
+				return this._cbg_caliberkeyname2;
+			}
+			set
+			{
+				if ((this._cbg_caliberkeyname2 != value))
+				{
+					this.Oncbg_caliberkeyname2Changing(value);
+					this.SendPropertyChanging();
+					this._cbg_caliberkeyname2 = value;
+					this.SendPropertyChanged("cbg_caliberkeyname2");
+					this.Oncbg_caliberkeyname2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cbg_caliberkey3", DbType="NVarChar(50)", UpdateCheck=UpdateCheck.Never)]
+		public string cbg_caliberkey3
+		{
+			get
+			{
+				return this._cbg_caliberkey3;
+			}
+			set
+			{
+				if ((this._cbg_caliberkey3 != value))
+				{
+					this.Oncbg_caliberkey3Changing(value);
+					this.SendPropertyChanging();
+					this._cbg_caliberkey3 = value;
+					this.SendPropertyChanged("cbg_caliberkey3");
+					this.Oncbg_caliberkey3Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cbg_caliberkeyname3", DbType="NVarChar(100)", UpdateCheck=UpdateCheck.Never)]
+		public string cbg_caliberkeyname3
+		{
+			get
+			{
+				return this._cbg_caliberkeyname3;
+			}
+			set
+			{
+				if ((this._cbg_caliberkeyname3 != value))
+				{
+					this.Oncbg_caliberkeyname3Changing(value);
+					this.SendPropertyChanging();
+					this._cbg_caliberkeyname3 = value;
+					this.SendPropertyChanged("cbg_caliberkeyname3");
+					this.Oncbg_caliberkeyname3Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cbg_calibercode1", DbType="NVarChar(90)", UpdateCheck=UpdateCheck.Never)]
+		public string cbg_calibercode1
+		{
+			get
+			{
+				return this._cbg_calibercode1;
+			}
+			set
+			{
+				if ((this._cbg_calibercode1 != value))
+				{
+					this.Oncbg_calibercode1Changing(value);
+					this.SendPropertyChanging();
+					this._cbg_calibercode1 = value;
+					this.SendPropertyChanged("cbg_calibercode1");
+					this.Oncbg_calibercode1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cbg_calibername1", DbType="NVarChar(100)", UpdateCheck=UpdateCheck.Never)]
+		public string cbg_calibername1
+		{
+			get
+			{
+				return this._cbg_calibername1;
+			}
+			set
+			{
+				if ((this._cbg_calibername1 != value))
+				{
+					this.Oncbg_calibername1Changing(value);
+					this.SendPropertyChanging();
+					this._cbg_calibername1 = value;
+					this.SendPropertyChanged("cbg_calibername1");
+					this.Oncbg_calibername1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cbg_calibercode2", DbType="NVarChar(90)", UpdateCheck=UpdateCheck.Never)]
+		public string cbg_calibercode2
+		{
+			get
+			{
+				return this._cbg_calibercode2;
+			}
+			set
+			{
+				if ((this._cbg_calibercode2 != value))
+				{
+					this.Oncbg_calibercode2Changing(value);
+					this.SendPropertyChanging();
+					this._cbg_calibercode2 = value;
+					this.SendPropertyChanged("cbg_calibercode2");
+					this.Oncbg_calibercode2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cbg_calibername2", DbType="NVarChar(100)", UpdateCheck=UpdateCheck.Never)]
+		public string cbg_calibername2
+		{
+			get
+			{
+				return this._cbg_calibername2;
+			}
+			set
+			{
+				if ((this._cbg_calibername2 != value))
+				{
+					this.Oncbg_calibername2Changing(value);
+					this.SendPropertyChanging();
+					this._cbg_calibername2 = value;
+					this.SendPropertyChanged("cbg_calibername2");
+					this.Oncbg_calibername2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cbg_calibercode3", DbType="NVarChar(90)", UpdateCheck=UpdateCheck.Never)]
+		public string cbg_calibercode3
+		{
+			get
+			{
+				return this._cbg_calibercode3;
+			}
+			set
+			{
+				if ((this._cbg_calibercode3 != value))
+				{
+					this.Oncbg_calibercode3Changing(value);
+					this.SendPropertyChanging();
+					this._cbg_calibercode3 = value;
+					this.SendPropertyChanged("cbg_calibercode3");
+					this.Oncbg_calibercode3Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cbg_calibername3", DbType="NVarChar(100)", UpdateCheck=UpdateCheck.Never)]
+		public string cbg_calibername3
+		{
+			get
+			{
+				return this._cbg_calibername3;
+			}
+			set
+			{
+				if ((this._cbg_calibername3 != value))
+				{
+					this.Oncbg_calibername3Changing(value);
+					this.SendPropertyChanging();
+					this._cbg_calibername3 = value;
+					this.SendPropertyChanged("cbg_calibername3");
+					this.Oncbg_calibername3Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ibg_ctrl", DbType="Bit", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<bool> ibg_ctrl
+		{
+			get
+			{
+				return this._ibg_ctrl;
+			}
+			set
+			{
+				if ((this._ibg_ctrl != value))
+				{
+					this.Onibg_ctrlChanging(value);
+					this.SendPropertyChanging();
+					this._ibg_ctrl = value;
+					this.SendPropertyChanged("ibg_ctrl");
+					this.Onibg_ctrlChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cbg_auditopinion", DbType="NVarChar(100)", UpdateCheck=UpdateCheck.Never)]
+		public string cbg_auditopinion
+		{
+			get
+			{
+				return this._cbg_auditopinion;
+			}
+			set
+			{
+				if ((this._cbg_auditopinion != value))
+				{
+					this.Oncbg_auditopinionChanging(value);
+					this.SendPropertyChanging();
+					this._cbg_auditopinion = value;
+					this.SendPropertyChanged("cbg_auditopinion");
+					this.Oncbg_auditopinionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cApplyCode", DbType="NVarChar(255)", UpdateCheck=UpdateCheck.Never)]
+		public string cApplyCode
+		{
+			get
+			{
+				return this._cApplyCode;
+			}
+			set
+			{
+				if ((this._cApplyCode != value))
+				{
+					this.OncApplyCodeChanging(value);
+					this.SendPropertyChanging();
+					this._cApplyCode = value;
+					this.SendPropertyChanged("cApplyCode");
+					this.OncApplyCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cPZNum", DbType="NVarChar(20)", UpdateCheck=UpdateCheck.Never)]
+		public string cPZNum
+		{
+			get
+			{
+				return this._cPZNum;
+			}
+			set
+			{
+				if ((this._cPZNum != value))
+				{
+					this.OncPZNumChanging(value);
+					this.SendPropertyChanging();
+					this._cPZNum = value;
+					this.SendPropertyChanged("cPZNum");
+					this.OncPZNumChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_doutbilldate", DbType="DateTime", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<System.DateTime> doutbilldate
+		{
+			get
+			{
+				return this._doutbilldate;
+			}
+			set
+			{
+				if ((this._doutbilldate != value))
+				{
+					this.OndoutbilldateChanging(value);
+					this.SendPropertyChanging();
+					this._doutbilldate = value;
+					this.SendPropertyChanged("doutbilldate");
+					this.OndoutbilldateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cbg_caliberkey4", DbType="NVarChar(50)", UpdateCheck=UpdateCheck.Never)]
+		public string cbg_caliberkey4
+		{
+			get
+			{
+				return this._cbg_caliberkey4;
+			}
+			set
+			{
+				if ((this._cbg_caliberkey4 != value))
+				{
+					this.Oncbg_caliberkey4Changing(value);
+					this.SendPropertyChanging();
+					this._cbg_caliberkey4 = value;
+					this.SendPropertyChanged("cbg_caliberkey4");
+					this.Oncbg_caliberkey4Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cbg_caliberkeyname4", DbType="NVarChar(100)", UpdateCheck=UpdateCheck.Never)]
+		public string cbg_caliberkeyname4
+		{
+			get
+			{
+				return this._cbg_caliberkeyname4;
+			}
+			set
+			{
+				if ((this._cbg_caliberkeyname4 != value))
+				{
+					this.Oncbg_caliberkeyname4Changing(value);
+					this.SendPropertyChanging();
+					this._cbg_caliberkeyname4 = value;
+					this.SendPropertyChanged("cbg_caliberkeyname4");
+					this.Oncbg_caliberkeyname4Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cbg_caliberkey5", DbType="NVarChar(50)", UpdateCheck=UpdateCheck.Never)]
+		public string cbg_caliberkey5
+		{
+			get
+			{
+				return this._cbg_caliberkey5;
+			}
+			set
+			{
+				if ((this._cbg_caliberkey5 != value))
+				{
+					this.Oncbg_caliberkey5Changing(value);
+					this.SendPropertyChanging();
+					this._cbg_caliberkey5 = value;
+					this.SendPropertyChanged("cbg_caliberkey5");
+					this.Oncbg_caliberkey5Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cbg_caliberkeyname5", DbType="NVarChar(100)", UpdateCheck=UpdateCheck.Never)]
+		public string cbg_caliberkeyname5
+		{
+			get
+			{
+				return this._cbg_caliberkeyname5;
+			}
+			set
+			{
+				if ((this._cbg_caliberkeyname5 != value))
+				{
+					this.Oncbg_caliberkeyname5Changing(value);
+					this.SendPropertyChanging();
+					this._cbg_caliberkeyname5 = value;
+					this.SendPropertyChanged("cbg_caliberkeyname5");
+					this.Oncbg_caliberkeyname5Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cbg_caliberkey6", DbType="NVarChar(50)", UpdateCheck=UpdateCheck.Never)]
+		public string cbg_caliberkey6
+		{
+			get
+			{
+				return this._cbg_caliberkey6;
+			}
+			set
+			{
+				if ((this._cbg_caliberkey6 != value))
+				{
+					this.Oncbg_caliberkey6Changing(value);
+					this.SendPropertyChanging();
+					this._cbg_caliberkey6 = value;
+					this.SendPropertyChanged("cbg_caliberkey6");
+					this.Oncbg_caliberkey6Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cbg_caliberkeyname6", DbType="NVarChar(100)", UpdateCheck=UpdateCheck.Never)]
+		public string cbg_caliberkeyname6
+		{
+			get
+			{
+				return this._cbg_caliberkeyname6;
+			}
+			set
+			{
+				if ((this._cbg_caliberkeyname6 != value))
+				{
+					this.Oncbg_caliberkeyname6Changing(value);
+					this.SendPropertyChanging();
+					this._cbg_caliberkeyname6 = value;
+					this.SendPropertyChanged("cbg_caliberkeyname6");
+					this.Oncbg_caliberkeyname6Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cbg_calibercode4", DbType="NVarChar(90)", UpdateCheck=UpdateCheck.Never)]
+		public string cbg_calibercode4
+		{
+			get
+			{
+				return this._cbg_calibercode4;
+			}
+			set
+			{
+				if ((this._cbg_calibercode4 != value))
+				{
+					this.Oncbg_calibercode4Changing(value);
+					this.SendPropertyChanging();
+					this._cbg_calibercode4 = value;
+					this.SendPropertyChanged("cbg_calibercode4");
+					this.Oncbg_calibercode4Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cbg_calibername4", DbType="NVarChar(100)", UpdateCheck=UpdateCheck.Never)]
+		public string cbg_calibername4
+		{
+			get
+			{
+				return this._cbg_calibername4;
+			}
+			set
+			{
+				if ((this._cbg_calibername4 != value))
+				{
+					this.Oncbg_calibername4Changing(value);
+					this.SendPropertyChanging();
+					this._cbg_calibername4 = value;
+					this.SendPropertyChanged("cbg_calibername4");
+					this.Oncbg_calibername4Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cbg_calibercode5", DbType="NVarChar(90)", UpdateCheck=UpdateCheck.Never)]
+		public string cbg_calibercode5
+		{
+			get
+			{
+				return this._cbg_calibercode5;
+			}
+			set
+			{
+				if ((this._cbg_calibercode5 != value))
+				{
+					this.Oncbg_calibercode5Changing(value);
+					this.SendPropertyChanging();
+					this._cbg_calibercode5 = value;
+					this.SendPropertyChanged("cbg_calibercode5");
+					this.Oncbg_calibercode5Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cbg_calibername5", DbType="NVarChar(100)", UpdateCheck=UpdateCheck.Never)]
+		public string cbg_calibername5
+		{
+			get
+			{
+				return this._cbg_calibername5;
+			}
+			set
+			{
+				if ((this._cbg_calibername5 != value))
+				{
+					this.Oncbg_calibername5Changing(value);
+					this.SendPropertyChanging();
+					this._cbg_calibername5 = value;
+					this.SendPropertyChanged("cbg_calibername5");
+					this.Oncbg_calibername5Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cbg_calibercode6", DbType="NVarChar(90)", UpdateCheck=UpdateCheck.Never)]
+		public string cbg_calibercode6
+		{
+			get
+			{
+				return this._cbg_calibercode6;
+			}
+			set
+			{
+				if ((this._cbg_calibercode6 != value))
+				{
+					this.Oncbg_calibercode6Changing(value);
+					this.SendPropertyChanging();
+					this._cbg_calibercode6 = value;
+					this.SendPropertyChanged("cbg_calibercode6");
+					this.Oncbg_calibercode6Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cbg_calibername6", DbType="NVarChar(100)", UpdateCheck=UpdateCheck.Never)]
+		public string cbg_calibername6
+		{
+			get
+			{
+				return this._cbg_calibername6;
+			}
+			set
+			{
+				if ((this._cbg_calibername6 != value))
+				{
+					this.Oncbg_calibername6Changing(value);
+					this.SendPropertyChanging();
+					this._cbg_calibername6 = value;
+					this.SendPropertyChanged("cbg_calibername6");
+					this.Oncbg_calibername6Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iPrintCount", DbType="Int NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public int iPrintCount
+		{
+			get
+			{
+				return this._iPrintCount;
+			}
+			set
+			{
+				if ((this._iPrintCount != value))
+				{
+					this.OniPrintCountChanging(value);
+					this.SendPropertyChanging();
+					this._iPrintCount = value;
+					this.SendPropertyChanged("iPrintCount");
+					this.OniPrintCountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cReserveDeptCode", DbType="NVarChar(12)", UpdateCheck=UpdateCheck.Never)]
+		public string cReserveDeptCode
+		{
+			get
+			{
+				return this._cReserveDeptCode;
+			}
+			set
+			{
+				if ((this._cReserveDeptCode != value))
+				{
+					this.OncReserveDeptCodeChanging(value);
+					this.SendPropertyChanging();
+					this._cReserveDeptCode = value;
+					this.SendPropertyChanged("cReserveDeptCode");
+					this.OncReserveDeptCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bDealMode", DbType="Bit", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<bool> bDealMode
+		{
+			get
+			{
+				return this._bDealMode;
+			}
+			set
+			{
+				if ((this._bDealMode != value))
+				{
+					this.OnbDealModeChanging(value);
+					this.SendPropertyChanging();
+					this._bDealMode = value;
+					this.SendPropertyChanged("bDealMode");
+					this.OnbDealModeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iBusType", DbType="Int", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<int> iBusType
+		{
+			get
+			{
+				return this._iBusType;
+			}
+			set
+			{
+				if ((this._iBusType != value))
+				{
+					this.OniBusTypeChanging(value);
+					this.SendPropertyChanging();
+					this._iBusType = value;
+					this.SendPropertyChanged("iBusType");
+					this.OniBusTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iPayType", DbType="Int NOT NULL", UpdateCheck=UpdateCheck.Never)]
+		public int iPayType
+		{
+			get
+			{
+				return this._iPayType;
+			}
+			set
+			{
+				if ((this._iPayType != value))
+				{
+					this.OniPayTypeChanging(value);
+					this.SendPropertyChanging();
+					this._iPayType = value;
+					this.SendPropertyChanged("iPayType");
+					this.OniPayTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cagentcuscode", DbType="NVarChar(30)", UpdateCheck=UpdateCheck.Never)]
+		public string cagentcuscode
+		{
+			get
+			{
+				return this._cagentcuscode;
+			}
+			set
+			{
+				if ((this._cagentcuscode != value))
+				{
+					this.OncagentcuscodeChanging(value);
+					this.SendPropertyChanging();
+					this._cagentcuscode = value;
+					this.SendPropertyChanged("cagentcuscode");
+					this.OncagentcuscodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_csysbarcode", DbType="NVarChar(60)", UpdateCheck=UpdateCheck.Never)]
+		public string csysbarcode
+		{
+			get
+			{
+				return this._csysbarcode;
+			}
+			set
+			{
+				if ((this._csysbarcode != value))
+				{
+					this.OncsysbarcodeChanging(value);
+					this.SendPropertyChanging();
+					this._csysbarcode = value;
+					this.SendPropertyChanged("csysbarcode");
+					this.OncsysbarcodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cCurrentAuditor", DbType="NVarChar(200)", UpdateCheck=UpdateCheck.Never)]
+		public string cCurrentAuditor
+		{
+			get
+			{
+				return this._cCurrentAuditor;
+			}
+			set
+			{
+				if ((this._cCurrentAuditor != value))
+				{
+					this.OncCurrentAuditorChanging(value);
+					this.SendPropertyChanging();
+					this._cCurrentAuditor = value;
+					this.SendPropertyChanged("cCurrentAuditor");
+					this.OncCurrentAuditorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lAcctID", DbType="Int", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<int> lAcctID
+		{
+			get
+			{
+				return this._lAcctID;
+			}
+			set
+			{
+				if ((this._lAcctID != value))
+				{
+					this.OnlAcctIDChanging(value);
+					this.SendPropertyChanging();
+					this._lAcctID = value;
+					this.SendPropertyChanged("lAcctID");
+					this.OnlAcctIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iNotRateAmount", DbType="Money", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<decimal> iNotRateAmount
+		{
+			get
+			{
+				return this._iNotRateAmount;
+			}
+			set
+			{
+				if ((this._iNotRateAmount != value))
+				{
+					this.OniNotRateAmountChanging(value);
+					this.SendPropertyChanging();
+					this._iNotRateAmount = value;
+					this.SendPropertyChanged("iNotRateAmount");
+					this.OniNotRateAmountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iNotRateAmount_f", DbType="Money", UpdateCheck=UpdateCheck.Never)]
+		public System.Nullable<decimal> iNotRateAmount_f
+		{
+			get
+			{
+				return this._iNotRateAmount_f;
+			}
+			set
+			{
+				if ((this._iNotRateAmount_f != value))
+				{
+					this.OniNotRateAmount_fChanging(value);
+					this.SendPropertyChanging();
+					this._iNotRateAmount_f = value;
+					this.SendPropertyChanged("iNotRateAmount_f");
+					this.OniNotRateAmount_fChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ap_CloseBill_Ap_CloseBills", Storage="_Ap_CloseBills", ThisKey="iID", OtherKey="iID")]
+		public EntitySet<Ap_CloseBills> Ap_CloseBills
+		{
+			get
+			{
+				return this._Ap_CloseBills;
+			}
+			set
+			{
+				this._Ap_CloseBills.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Department_Ap_CloseBill", Storage="_Department", ThisKey="cDeptCode", OtherKey="cDepCode", IsForeignKey=true)]
+		public Department Department
+		{
+			get
+			{
+				return this._Department.Entity;
+			}
+			set
+			{
+				Department previousValue = this._Department.Entity;
+				if (((previousValue != value) 
+							|| (this._Department.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Department.Entity = null;
+						previousValue.Ap_CloseBill.Remove(this);
+					}
+					this._Department.Entity = value;
+					if ((value != null))
+					{
+						value.Ap_CloseBill.Add(this);
+						this._cDeptCode = value.cDepCode;
+					}
+					else
+					{
+						this._cDeptCode = default(string);
+					}
+					this.SendPropertyChanged("Department");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Ap_CloseBills(Ap_CloseBills entity)
+		{
+			this.SendPropertyChanging();
+			entity.Ap_CloseBill = this;
+		}
+		
+		private void detach_Ap_CloseBills(Ap_CloseBills entity)
+		{
+			this.SendPropertyChanging();
+			entity.Ap_CloseBill = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Ap_CloseBill_extradefine")]
+	public partial class Ap_CloseBill_extradefine : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _iID;
+		
+		private string _chdefine1;
+		
+		private string _chdefine2;
+		
+		private string _chdefine3;
+		
+		private string _chdefine4;
+		
+		private string _chdefine5;
+		
+		private string _chdefine6;
+		
+		private string _chdefine7;
+		
+		private string _chdefine8;
+		
+		private string _chdefine9;
+		
+		private string _chdefine10;
+		
+		private string _chdefine11;
+		
+		private string _chdefine12;
+		
+		private string _chdefine13;
+		
+		private System.Nullable<double> _chdefine14;
+		
+		private System.Nullable<double> _chdefine15;
+		
+		private System.Nullable<double> _chdefine16;
+		
+		private System.Nullable<double> _chdefine17;
+		
+		private System.Nullable<double> _chdefine18;
+		
+		private string _chdefine19;
+		
+    #region 可扩展性方法定义
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OniIDChanging(int value);
+    partial void OniIDChanged();
+    partial void Onchdefine1Changing(string value);
+    partial void Onchdefine1Changed();
+    partial void Onchdefine2Changing(string value);
+    partial void Onchdefine2Changed();
+    partial void Onchdefine3Changing(string value);
+    partial void Onchdefine3Changed();
+    partial void Onchdefine4Changing(string value);
+    partial void Onchdefine4Changed();
+    partial void Onchdefine5Changing(string value);
+    partial void Onchdefine5Changed();
+    partial void Onchdefine6Changing(string value);
+    partial void Onchdefine6Changed();
+    partial void Onchdefine7Changing(string value);
+    partial void Onchdefine7Changed();
+    partial void Onchdefine8Changing(string value);
+    partial void Onchdefine8Changed();
+    partial void Onchdefine9Changing(string value);
+    partial void Onchdefine9Changed();
+    partial void Onchdefine10Changing(string value);
+    partial void Onchdefine10Changed();
+    partial void Onchdefine11Changing(string value);
+    partial void Onchdefine11Changed();
+    partial void Onchdefine12Changing(string value);
+    partial void Onchdefine12Changed();
+    partial void Onchdefine13Changing(string value);
+    partial void Onchdefine13Changed();
+    partial void Onchdefine14Changing(System.Nullable<double> value);
+    partial void Onchdefine14Changed();
+    partial void Onchdefine15Changing(System.Nullable<double> value);
+    partial void Onchdefine15Changed();
+    partial void Onchdefine16Changing(System.Nullable<double> value);
+    partial void Onchdefine16Changed();
+    partial void Onchdefine17Changing(System.Nullable<double> value);
+    partial void Onchdefine17Changed();
+    partial void Onchdefine18Changing(System.Nullable<double> value);
+    partial void Onchdefine18Changed();
+    partial void Onchdefine19Changing(string value);
+    partial void Onchdefine19Changed();
+    #endregion
+		
+		public Ap_CloseBill_extradefine()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int iID
+		{
+			get
+			{
+				return this._iID;
+			}
+			set
+			{
+				if ((this._iID != value))
+				{
+					this.OniIDChanging(value);
+					this.SendPropertyChanging();
+					this._iID = value;
+					this.SendPropertyChanged("iID");
+					this.OniIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_chdefine1", DbType="NVarChar(120)")]
+		public string chdefine1
+		{
+			get
+			{
+				return this._chdefine1;
+			}
+			set
+			{
+				if ((this._chdefine1 != value))
+				{
+					this.Onchdefine1Changing(value);
+					this.SendPropertyChanging();
+					this._chdefine1 = value;
+					this.SendPropertyChanged("chdefine1");
+					this.Onchdefine1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_chdefine2", DbType="NVarChar(120)")]
+		public string chdefine2
+		{
+			get
+			{
+				return this._chdefine2;
+			}
+			set
+			{
+				if ((this._chdefine2 != value))
+				{
+					this.Onchdefine2Changing(value);
+					this.SendPropertyChanging();
+					this._chdefine2 = value;
+					this.SendPropertyChanged("chdefine2");
+					this.Onchdefine2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_chdefine3", DbType="NVarChar(50)")]
+		public string chdefine3
+		{
+			get
+			{
+				return this._chdefine3;
+			}
+			set
+			{
+				if ((this._chdefine3 != value))
+				{
+					this.Onchdefine3Changing(value);
+					this.SendPropertyChanging();
+					this._chdefine3 = value;
+					this.SendPropertyChanged("chdefine3");
+					this.Onchdefine3Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_chdefine4", DbType="NVarChar(50)")]
+		public string chdefine4
+		{
+			get
+			{
+				return this._chdefine4;
+			}
+			set
+			{
+				if ((this._chdefine4 != value))
+				{
+					this.Onchdefine4Changing(value);
+					this.SendPropertyChanging();
+					this._chdefine4 = value;
+					this.SendPropertyChanged("chdefine4");
+					this.Onchdefine4Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_chdefine5", DbType="NVarChar(200)")]
+		public string chdefine5
+		{
+			get
+			{
+				return this._chdefine5;
+			}
+			set
+			{
+				if ((this._chdefine5 != value))
+				{
+					this.Onchdefine5Changing(value);
+					this.SendPropertyChanging();
+					this._chdefine5 = value;
+					this.SendPropertyChanged("chdefine5");
+					this.Onchdefine5Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_chdefine6", DbType="NVarChar(50)")]
+		public string chdefine6
+		{
+			get
+			{
+				return this._chdefine6;
+			}
+			set
+			{
+				if ((this._chdefine6 != value))
+				{
+					this.Onchdefine6Changing(value);
+					this.SendPropertyChanging();
+					this._chdefine6 = value;
+					this.SendPropertyChanged("chdefine6");
+					this.Onchdefine6Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_chdefine7", DbType="NVarChar(100)")]
+		public string chdefine7
+		{
+			get
+			{
+				return this._chdefine7;
+			}
+			set
+			{
+				if ((this._chdefine7 != value))
+				{
+					this.Onchdefine7Changing(value);
+					this.SendPropertyChanging();
+					this._chdefine7 = value;
+					this.SendPropertyChanged("chdefine7");
+					this.Onchdefine7Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_chdefine8", DbType="NVarChar(100)")]
+		public string chdefine8
+		{
+			get
+			{
+				return this._chdefine8;
+			}
+			set
+			{
+				if ((this._chdefine8 != value))
+				{
+					this.Onchdefine8Changing(value);
+					this.SendPropertyChanging();
+					this._chdefine8 = value;
+					this.SendPropertyChanged("chdefine8");
+					this.Onchdefine8Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_chdefine9", DbType="NVarChar(200)")]
+		public string chdefine9
+		{
+			get
+			{
+				return this._chdefine9;
+			}
+			set
+			{
+				if ((this._chdefine9 != value))
+				{
+					this.Onchdefine9Changing(value);
+					this.SendPropertyChanging();
+					this._chdefine9 = value;
+					this.SendPropertyChanged("chdefine9");
+					this.Onchdefine9Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_chdefine10", DbType="NVarChar(300)")]
+		public string chdefine10
+		{
+			get
+			{
+				return this._chdefine10;
+			}
+			set
+			{
+				if ((this._chdefine10 != value))
+				{
+					this.Onchdefine10Changing(value);
+					this.SendPropertyChanging();
+					this._chdefine10 = value;
+					this.SendPropertyChanged("chdefine10");
+					this.Onchdefine10Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_chdefine11", DbType="NVarChar(50)")]
+		public string chdefine11
+		{
+			get
+			{
+				return this._chdefine11;
+			}
+			set
+			{
+				if ((this._chdefine11 != value))
+				{
+					this.Onchdefine11Changing(value);
+					this.SendPropertyChanging();
+					this._chdefine11 = value;
+					this.SendPropertyChanged("chdefine11");
+					this.Onchdefine11Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_chdefine12", DbType="NVarChar(100)")]
+		public string chdefine12
+		{
+			get
+			{
+				return this._chdefine12;
+			}
+			set
+			{
+				if ((this._chdefine12 != value))
+				{
+					this.Onchdefine12Changing(value);
+					this.SendPropertyChanging();
+					this._chdefine12 = value;
+					this.SendPropertyChanged("chdefine12");
+					this.Onchdefine12Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_chdefine13", DbType="NVarChar(50)")]
+		public string chdefine13
+		{
+			get
+			{
+				return this._chdefine13;
+			}
+			set
+			{
+				if ((this._chdefine13 != value))
+				{
+					this.Onchdefine13Changing(value);
+					this.SendPropertyChanging();
+					this._chdefine13 = value;
+					this.SendPropertyChanged("chdefine13");
+					this.Onchdefine13Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_chdefine14", DbType="Float")]
+		public System.Nullable<double> chdefine14
+		{
+			get
+			{
+				return this._chdefine14;
+			}
+			set
+			{
+				if ((this._chdefine14 != value))
+				{
+					this.Onchdefine14Changing(value);
+					this.SendPropertyChanging();
+					this._chdefine14 = value;
+					this.SendPropertyChanged("chdefine14");
+					this.Onchdefine14Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_chdefine15", DbType="Float")]
+		public System.Nullable<double> chdefine15
+		{
+			get
+			{
+				return this._chdefine15;
+			}
+			set
+			{
+				if ((this._chdefine15 != value))
+				{
+					this.Onchdefine15Changing(value);
+					this.SendPropertyChanging();
+					this._chdefine15 = value;
+					this.SendPropertyChanged("chdefine15");
+					this.Onchdefine15Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_chdefine16", DbType="Float")]
+		public System.Nullable<double> chdefine16
+		{
+			get
+			{
+				return this._chdefine16;
+			}
+			set
+			{
+				if ((this._chdefine16 != value))
+				{
+					this.Onchdefine16Changing(value);
+					this.SendPropertyChanging();
+					this._chdefine16 = value;
+					this.SendPropertyChanged("chdefine16");
+					this.Onchdefine16Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_chdefine17", DbType="Float")]
+		public System.Nullable<double> chdefine17
+		{
+			get
+			{
+				return this._chdefine17;
+			}
+			set
+			{
+				if ((this._chdefine17 != value))
+				{
+					this.Onchdefine17Changing(value);
+					this.SendPropertyChanging();
+					this._chdefine17 = value;
+					this.SendPropertyChanged("chdefine17");
+					this.Onchdefine17Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_chdefine18", DbType="Float")]
+		public System.Nullable<double> chdefine18
+		{
+			get
+			{
+				return this._chdefine18;
+			}
+			set
+			{
+				if ((this._chdefine18 != value))
+				{
+					this.Onchdefine18Changing(value);
+					this.SendPropertyChanging();
+					this._chdefine18 = value;
+					this.SendPropertyChanged("chdefine18");
+					this.Onchdefine18Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_chdefine19", DbType="NVarChar(300)")]
+		public string chdefine19
+		{
+			get
+			{
+				return this._chdefine19;
+			}
+			set
+			{
+				if ((this._chdefine19 != value))
+				{
+					this.Onchdefine19Changing(value);
+					this.SendPropertyChanging();
+					this._chdefine19 = value;
+					this.SendPropertyChanged("chdefine19");
+					this.Onchdefine19Changed();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Ap_CloseBills")]
+	public partial class Ap_CloseBills : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _iID;
+		
+		private int _ID;
+		
+		private byte _iType;
+		
+		private bool _bPrePay;
+		
+		private string _cCusVen;
+		
+		private decimal _iAmt_f;
+		
+		private decimal _iAmt;
+		
+		private decimal _iRAmt_f;
+		
+		private decimal _iRAmt;
+		
+		private string _cKm;
+		
+		private string _cXmClass;
+		
+		private string _cXm;
+		
+		private string _cDepCode;
+		
+		private string _cPersonCode;
+		
+		private string _cOrderID;
+		
+		private string _cItemName;
+		
+		private string _cConType;
+		
+		private string _cConID;
+		
+		private System.Nullable<double> _iAmt_s;
+		
+		private System.Nullable<double> _iRAmt_s;
+		
+		private System.Nullable<byte> _iOrderType;
+		
+		private string _cDLCode;
+		
+		private string _ccItemCode;
+		
+		private System.Nullable<int> _RegisterFlag;
+		
+		private string _cDefine22;
+		
+		private string _cDefine23;
+		
+		private string _cDefine24;
+		
+		private string _cDefine25;
+		
+		private System.Nullable<double> _cDefine26;
+		
+		private System.Nullable<double> _cDefine27;
+		
+		private string _cDefine28;
+		
+		private string _cDefine29;
+		
+		private string _cDefine30;
+		
+		private string _cDefine31;
+		
+		private string _cDefine32;
+		
+		private string _cDefine33;
+		
+		private System.Nullable<int> _cDefine34;
+		
+		private System.Nullable<int> _cDefine35;
+		
+		private System.Nullable<System.DateTime> _cDefine36;
+		
+		private System.Nullable<System.DateTime> _cDefine37;
+		
+		private string _cStageCode;
+		
+		private string _cCoVouchID;
+		
+		private string _cExecID;
+		
+		private string _cMemo;
+		
+		private System.Nullable<int> _iSrcClosesID;
+		
+		private decimal _ifaresettled_f;
+		
+		private string _cEBOrderCode;
+		
+		private EntityRef<Ap_CloseBill> _Ap_CloseBill;
+		
+    #region 可扩展性方法定义
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OniIDChanging(int value);
+    partial void OniIDChanged();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OniTypeChanging(byte value);
+    partial void OniTypeChanged();
+    partial void OnbPrePayChanging(bool value);
+    partial void OnbPrePayChanged();
+    partial void OncCusVenChanging(string value);
+    partial void OncCusVenChanged();
+    partial void OniAmt_fChanging(decimal value);
+    partial void OniAmt_fChanged();
+    partial void OniAmtChanging(decimal value);
+    partial void OniAmtChanged();
+    partial void OniRAmt_fChanging(decimal value);
+    partial void OniRAmt_fChanged();
+    partial void OniRAmtChanging(decimal value);
+    partial void OniRAmtChanged();
+    partial void OncKmChanging(string value);
+    partial void OncKmChanged();
+    partial void OncXmClassChanging(string value);
+    partial void OncXmClassChanged();
+    partial void OncXmChanging(string value);
+    partial void OncXmChanged();
+    partial void OncDepCodeChanging(string value);
+    partial void OncDepCodeChanged();
+    partial void OncPersonCodeChanging(string value);
+    partial void OncPersonCodeChanged();
+    partial void OncOrderIDChanging(string value);
+    partial void OncOrderIDChanged();
+    partial void OncItemNameChanging(string value);
+    partial void OncItemNameChanged();
+    partial void OncConTypeChanging(string value);
+    partial void OncConTypeChanged();
+    partial void OncConIDChanging(string value);
+    partial void OncConIDChanged();
+    partial void OniAmt_sChanging(System.Nullable<double> value);
+    partial void OniAmt_sChanged();
+    partial void OniRAmt_sChanging(System.Nullable<double> value);
+    partial void OniRAmt_sChanged();
+    partial void OniOrderTypeChanging(System.Nullable<byte> value);
+    partial void OniOrderTypeChanged();
+    partial void OncDLCodeChanging(string value);
+    partial void OncDLCodeChanged();
+    partial void OnccItemCodeChanging(string value);
+    partial void OnccItemCodeChanged();
+    partial void OnRegisterFlagChanging(System.Nullable<int> value);
+    partial void OnRegisterFlagChanged();
+    partial void OncDefine22Changing(string value);
+    partial void OncDefine22Changed();
+    partial void OncDefine23Changing(string value);
+    partial void OncDefine23Changed();
+    partial void OncDefine24Changing(string value);
+    partial void OncDefine24Changed();
+    partial void OncDefine25Changing(string value);
+    partial void OncDefine25Changed();
+    partial void OncDefine26Changing(System.Nullable<double> value);
+    partial void OncDefine26Changed();
+    partial void OncDefine27Changing(System.Nullable<double> value);
+    partial void OncDefine27Changed();
+    partial void OncDefine28Changing(string value);
+    partial void OncDefine28Changed();
+    partial void OncDefine29Changing(string value);
+    partial void OncDefine29Changed();
+    partial void OncDefine30Changing(string value);
+    partial void OncDefine30Changed();
+    partial void OncDefine31Changing(string value);
+    partial void OncDefine31Changed();
+    partial void OncDefine32Changing(string value);
+    partial void OncDefine32Changed();
+    partial void OncDefine33Changing(string value);
+    partial void OncDefine33Changed();
+    partial void OncDefine34Changing(System.Nullable<int> value);
+    partial void OncDefine34Changed();
+    partial void OncDefine35Changing(System.Nullable<int> value);
+    partial void OncDefine35Changed();
+    partial void OncDefine36Changing(System.Nullable<System.DateTime> value);
+    partial void OncDefine36Changed();
+    partial void OncDefine37Changing(System.Nullable<System.DateTime> value);
+    partial void OncDefine37Changed();
+    partial void OncStageCodeChanging(string value);
+    partial void OncStageCodeChanged();
+    partial void OncCoVouchIDChanging(string value);
+    partial void OncCoVouchIDChanged();
+    partial void OncExecIDChanging(string value);
+    partial void OncExecIDChanged();
+    partial void OncMemoChanging(string value);
+    partial void OncMemoChanged();
+    partial void OniSrcClosesIDChanging(System.Nullable<int> value);
+    partial void OniSrcClosesIDChanged();
+    partial void Onifaresettled_fChanging(decimal value);
+    partial void Onifaresettled_fChanged();
+    partial void OncEBOrderCodeChanging(string value);
+    partial void OncEBOrderCodeChanged();
+    #endregion
+		
+		public Ap_CloseBills()
+		{
+			this._Ap_CloseBill = default(EntityRef<Ap_CloseBill>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iID", DbType="Int NOT NULL")]
+		public int iID
+		{
+			get
+			{
+				return this._iID;
+			}
+			set
+			{
+				if ((this._iID != value))
+				{
+					if (this._Ap_CloseBill.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OniIDChanging(value);
+					this.SendPropertyChanging();
+					this._iID = value;
+					this.SendPropertyChanged("iID");
+					this.OniIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iType", DbType="TinyInt NOT NULL")]
+		public byte iType
+		{
+			get
+			{
+				return this._iType;
+			}
+			set
+			{
+				if ((this._iType != value))
+				{
+					this.OniTypeChanging(value);
+					this.SendPropertyChanging();
+					this._iType = value;
+					this.SendPropertyChanged("iType");
+					this.OniTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bPrePay", DbType="Bit NOT NULL")]
+		public bool bPrePay
+		{
+			get
+			{
+				return this._bPrePay;
+			}
+			set
+			{
+				if ((this._bPrePay != value))
+				{
+					this.OnbPrePayChanging(value);
+					this.SendPropertyChanging();
+					this._bPrePay = value;
+					this.SendPropertyChanged("bPrePay");
+					this.OnbPrePayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cCusVen", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string cCusVen
+		{
+			get
+			{
+				return this._cCusVen;
+			}
+			set
+			{
+				if ((this._cCusVen != value))
+				{
+					this.OncCusVenChanging(value);
+					this.SendPropertyChanging();
+					this._cCusVen = value;
+					this.SendPropertyChanged("cCusVen");
+					this.OncCusVenChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iAmt_f", DbType="Money NOT NULL")]
+		public decimal iAmt_f
+		{
+			get
+			{
+				return this._iAmt_f;
+			}
+			set
+			{
+				if ((this._iAmt_f != value))
+				{
+					this.OniAmt_fChanging(value);
+					this.SendPropertyChanging();
+					this._iAmt_f = value;
+					this.SendPropertyChanged("iAmt_f");
+					this.OniAmt_fChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iAmt", DbType="Money NOT NULL")]
+		public decimal iAmt
+		{
+			get
+			{
+				return this._iAmt;
+			}
+			set
+			{
+				if ((this._iAmt != value))
+				{
+					this.OniAmtChanging(value);
+					this.SendPropertyChanging();
+					this._iAmt = value;
+					this.SendPropertyChanged("iAmt");
+					this.OniAmtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iRAmt_f", DbType="Money NOT NULL")]
+		public decimal iRAmt_f
+		{
+			get
+			{
+				return this._iRAmt_f;
+			}
+			set
+			{
+				if ((this._iRAmt_f != value))
+				{
+					this.OniRAmt_fChanging(value);
+					this.SendPropertyChanging();
+					this._iRAmt_f = value;
+					this.SendPropertyChanged("iRAmt_f");
+					this.OniRAmt_fChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iRAmt", DbType="Money NOT NULL")]
+		public decimal iRAmt
+		{
+			get
+			{
+				return this._iRAmt;
+			}
+			set
+			{
+				if ((this._iRAmt != value))
+				{
+					this.OniRAmtChanging(value);
+					this.SendPropertyChanging();
+					this._iRAmt = value;
+					this.SendPropertyChanged("iRAmt");
+					this.OniRAmtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cKm", DbType="NVarChar(40)")]
+		public string cKm
+		{
+			get
+			{
+				return this._cKm;
+			}
+			set
+			{
+				if ((this._cKm != value))
+				{
+					this.OncKmChanging(value);
+					this.SendPropertyChanging();
+					this._cKm = value;
+					this.SendPropertyChanged("cKm");
+					this.OncKmChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cXmClass", DbType="NVarChar(2)")]
+		public string cXmClass
+		{
+			get
+			{
+				return this._cXmClass;
+			}
+			set
+			{
+				if ((this._cXmClass != value))
+				{
+					this.OncXmClassChanging(value);
+					this.SendPropertyChanging();
+					this._cXmClass = value;
+					this.SendPropertyChanged("cXmClass");
+					this.OncXmClassChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cXm", DbType="NVarChar(60)")]
+		public string cXm
+		{
+			get
+			{
+				return this._cXm;
+			}
+			set
+			{
+				if ((this._cXm != value))
+				{
+					this.OncXmChanging(value);
+					this.SendPropertyChanging();
+					this._cXm = value;
+					this.SendPropertyChanged("cXm");
+					this.OncXmChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDepCode", DbType="NVarChar(12)")]
+		public string cDepCode
+		{
+			get
+			{
+				return this._cDepCode;
+			}
+			set
+			{
+				if ((this._cDepCode != value))
+				{
+					this.OncDepCodeChanging(value);
+					this.SendPropertyChanging();
+					this._cDepCode = value;
+					this.SendPropertyChanged("cDepCode");
+					this.OncDepCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cPersonCode", DbType="NVarChar(20)")]
+		public string cPersonCode
+		{
+			get
+			{
+				return this._cPersonCode;
+			}
+			set
+			{
+				if ((this._cPersonCode != value))
+				{
+					this.OncPersonCodeChanging(value);
+					this.SendPropertyChanging();
+					this._cPersonCode = value;
+					this.SendPropertyChanged("cPersonCode");
+					this.OncPersonCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cOrderID", DbType="NVarChar(30)")]
+		public string cOrderID
+		{
+			get
+			{
+				return this._cOrderID;
+			}
+			set
+			{
+				if ((this._cOrderID != value))
+				{
+					this.OncOrderIDChanging(value);
+					this.SendPropertyChanging();
+					this._cOrderID = value;
+					this.SendPropertyChanged("cOrderID");
+					this.OncOrderIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cItemName", DbType="NVarChar(255)")]
+		public string cItemName
+		{
+			get
+			{
+				return this._cItemName;
+			}
+			set
+			{
+				if ((this._cItemName != value))
+				{
+					this.OncItemNameChanging(value);
+					this.SendPropertyChanging();
+					this._cItemName = value;
+					this.SendPropertyChanged("cItemName");
+					this.OncItemNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cConType", DbType="NVarChar(10)")]
+		public string cConType
+		{
+			get
+			{
+				return this._cConType;
+			}
+			set
+			{
+				if ((this._cConType != value))
+				{
+					this.OncConTypeChanging(value);
+					this.SendPropertyChanging();
+					this._cConType = value;
+					this.SendPropertyChanged("cConType");
+					this.OncConTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cConID", DbType="NVarChar(64)")]
+		public string cConID
+		{
+			get
+			{
+				return this._cConID;
+			}
+			set
+			{
+				if ((this._cConID != value))
+				{
+					this.OncConIDChanging(value);
+					this.SendPropertyChanging();
+					this._cConID = value;
+					this.SendPropertyChanged("cConID");
+					this.OncConIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iAmt_s", DbType="Float")]
+		public System.Nullable<double> iAmt_s
+		{
+			get
+			{
+				return this._iAmt_s;
+			}
+			set
+			{
+				if ((this._iAmt_s != value))
+				{
+					this.OniAmt_sChanging(value);
+					this.SendPropertyChanging();
+					this._iAmt_s = value;
+					this.SendPropertyChanged("iAmt_s");
+					this.OniAmt_sChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iRAmt_s", DbType="Float")]
+		public System.Nullable<double> iRAmt_s
+		{
+			get
+			{
+				return this._iRAmt_s;
+			}
+			set
+			{
+				if ((this._iRAmt_s != value))
+				{
+					this.OniRAmt_sChanging(value);
+					this.SendPropertyChanging();
+					this._iRAmt_s = value;
+					this.SendPropertyChanged("iRAmt_s");
+					this.OniRAmt_sChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iOrderType", DbType="TinyInt")]
+		public System.Nullable<byte> iOrderType
+		{
+			get
+			{
+				return this._iOrderType;
+			}
+			set
+			{
+				if ((this._iOrderType != value))
+				{
+					this.OniOrderTypeChanging(value);
+					this.SendPropertyChanging();
+					this._iOrderType = value;
+					this.SendPropertyChanged("iOrderType");
+					this.OniOrderTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDLCode", DbType="NVarChar(30)")]
+		public string cDLCode
+		{
+			get
+			{
+				return this._cDLCode;
+			}
+			set
+			{
+				if ((this._cDLCode != value))
+				{
+					this.OncDLCodeChanging(value);
+					this.SendPropertyChanging();
+					this._cDLCode = value;
+					this.SendPropertyChanged("cDLCode");
+					this.OncDLCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ccItemCode", DbType="NVarChar(50)")]
+		public string ccItemCode
+		{
+			get
+			{
+				return this._ccItemCode;
+			}
+			set
+			{
+				if ((this._ccItemCode != value))
+				{
+					this.OnccItemCodeChanging(value);
+					this.SendPropertyChanging();
+					this._ccItemCode = value;
+					this.SendPropertyChanged("ccItemCode");
+					this.OnccItemCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RegisterFlag", DbType="Int")]
+		public System.Nullable<int> RegisterFlag
+		{
+			get
+			{
+				return this._RegisterFlag;
+			}
+			set
+			{
+				if ((this._RegisterFlag != value))
+				{
+					this.OnRegisterFlagChanging(value);
+					this.SendPropertyChanging();
+					this._RegisterFlag = value;
+					this.SendPropertyChanged("RegisterFlag");
+					this.OnRegisterFlagChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDefine22", DbType="NVarChar(60)")]
+		public string cDefine22
+		{
+			get
+			{
+				return this._cDefine22;
+			}
+			set
+			{
+				if ((this._cDefine22 != value))
+				{
+					this.OncDefine22Changing(value);
+					this.SendPropertyChanging();
+					this._cDefine22 = value;
+					this.SendPropertyChanged("cDefine22");
+					this.OncDefine22Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDefine23", DbType="NVarChar(60)")]
+		public string cDefine23
+		{
+			get
+			{
+				return this._cDefine23;
+			}
+			set
+			{
+				if ((this._cDefine23 != value))
+				{
+					this.OncDefine23Changing(value);
+					this.SendPropertyChanging();
+					this._cDefine23 = value;
+					this.SendPropertyChanged("cDefine23");
+					this.OncDefine23Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDefine24", DbType="NVarChar(60)")]
+		public string cDefine24
+		{
+			get
+			{
+				return this._cDefine24;
+			}
+			set
+			{
+				if ((this._cDefine24 != value))
+				{
+					this.OncDefine24Changing(value);
+					this.SendPropertyChanging();
+					this._cDefine24 = value;
+					this.SendPropertyChanged("cDefine24");
+					this.OncDefine24Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDefine25", DbType="NVarChar(60)")]
+		public string cDefine25
+		{
+			get
+			{
+				return this._cDefine25;
+			}
+			set
+			{
+				if ((this._cDefine25 != value))
+				{
+					this.OncDefine25Changing(value);
+					this.SendPropertyChanging();
+					this._cDefine25 = value;
+					this.SendPropertyChanged("cDefine25");
+					this.OncDefine25Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDefine26", DbType="Float")]
+		public System.Nullable<double> cDefine26
+		{
+			get
+			{
+				return this._cDefine26;
+			}
+			set
+			{
+				if ((this._cDefine26 != value))
+				{
+					this.OncDefine26Changing(value);
+					this.SendPropertyChanging();
+					this._cDefine26 = value;
+					this.SendPropertyChanged("cDefine26");
+					this.OncDefine26Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDefine27", DbType="Float")]
+		public System.Nullable<double> cDefine27
+		{
+			get
+			{
+				return this._cDefine27;
+			}
+			set
+			{
+				if ((this._cDefine27 != value))
+				{
+					this.OncDefine27Changing(value);
+					this.SendPropertyChanging();
+					this._cDefine27 = value;
+					this.SendPropertyChanged("cDefine27");
+					this.OncDefine27Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDefine28", DbType="NVarChar(120)")]
+		public string cDefine28
+		{
+			get
+			{
+				return this._cDefine28;
+			}
+			set
+			{
+				if ((this._cDefine28 != value))
+				{
+					this.OncDefine28Changing(value);
+					this.SendPropertyChanging();
+					this._cDefine28 = value;
+					this.SendPropertyChanged("cDefine28");
+					this.OncDefine28Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDefine29", DbType="NVarChar(120)")]
+		public string cDefine29
+		{
+			get
+			{
+				return this._cDefine29;
+			}
+			set
+			{
+				if ((this._cDefine29 != value))
+				{
+					this.OncDefine29Changing(value);
+					this.SendPropertyChanging();
+					this._cDefine29 = value;
+					this.SendPropertyChanged("cDefine29");
+					this.OncDefine29Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDefine30", DbType="NVarChar(120)")]
+		public string cDefine30
+		{
+			get
+			{
+				return this._cDefine30;
+			}
+			set
+			{
+				if ((this._cDefine30 != value))
+				{
+					this.OncDefine30Changing(value);
+					this.SendPropertyChanging();
+					this._cDefine30 = value;
+					this.SendPropertyChanged("cDefine30");
+					this.OncDefine30Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDefine31", DbType="NVarChar(120)")]
+		public string cDefine31
+		{
+			get
+			{
+				return this._cDefine31;
+			}
+			set
+			{
+				if ((this._cDefine31 != value))
+				{
+					this.OncDefine31Changing(value);
+					this.SendPropertyChanging();
+					this._cDefine31 = value;
+					this.SendPropertyChanged("cDefine31");
+					this.OncDefine31Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDefine32", DbType="NVarChar(120)")]
+		public string cDefine32
+		{
+			get
+			{
+				return this._cDefine32;
+			}
+			set
+			{
+				if ((this._cDefine32 != value))
+				{
+					this.OncDefine32Changing(value);
+					this.SendPropertyChanging();
+					this._cDefine32 = value;
+					this.SendPropertyChanged("cDefine32");
+					this.OncDefine32Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDefine33", DbType="NVarChar(120)")]
+		public string cDefine33
+		{
+			get
+			{
+				return this._cDefine33;
+			}
+			set
+			{
+				if ((this._cDefine33 != value))
+				{
+					this.OncDefine33Changing(value);
+					this.SendPropertyChanging();
+					this._cDefine33 = value;
+					this.SendPropertyChanged("cDefine33");
+					this.OncDefine33Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDefine34", DbType="Int")]
+		public System.Nullable<int> cDefine34
+		{
+			get
+			{
+				return this._cDefine34;
+			}
+			set
+			{
+				if ((this._cDefine34 != value))
+				{
+					this.OncDefine34Changing(value);
+					this.SendPropertyChanging();
+					this._cDefine34 = value;
+					this.SendPropertyChanged("cDefine34");
+					this.OncDefine34Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDefine35", DbType="Int")]
+		public System.Nullable<int> cDefine35
+		{
+			get
+			{
+				return this._cDefine35;
+			}
+			set
+			{
+				if ((this._cDefine35 != value))
+				{
+					this.OncDefine35Changing(value);
+					this.SendPropertyChanging();
+					this._cDefine35 = value;
+					this.SendPropertyChanged("cDefine35");
+					this.OncDefine35Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDefine36", DbType="DateTime")]
+		public System.Nullable<System.DateTime> cDefine36
+		{
+			get
+			{
+				return this._cDefine36;
+			}
+			set
+			{
+				if ((this._cDefine36 != value))
+				{
+					this.OncDefine36Changing(value);
+					this.SendPropertyChanging();
+					this._cDefine36 = value;
+					this.SendPropertyChanged("cDefine36");
+					this.OncDefine36Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cDefine37", DbType="DateTime")]
+		public System.Nullable<System.DateTime> cDefine37
+		{
+			get
+			{
+				return this._cDefine37;
+			}
+			set
+			{
+				if ((this._cDefine37 != value))
+				{
+					this.OncDefine37Changing(value);
+					this.SendPropertyChanging();
+					this._cDefine37 = value;
+					this.SendPropertyChanged("cDefine37");
+					this.OncDefine37Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cStageCode", DbType="NVarChar(60)")]
+		public string cStageCode
+		{
+			get
+			{
+				return this._cStageCode;
+			}
+			set
+			{
+				if ((this._cStageCode != value))
+				{
+					this.OncStageCodeChanging(value);
+					this.SendPropertyChanging();
+					this._cStageCode = value;
+					this.SendPropertyChanged("cStageCode");
+					this.OncStageCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cCoVouchID", DbType="NVarChar(30)")]
+		public string cCoVouchID
+		{
+			get
+			{
+				return this._cCoVouchID;
+			}
+			set
+			{
+				if ((this._cCoVouchID != value))
+				{
+					this.OncCoVouchIDChanging(value);
+					this.SendPropertyChanging();
+					this._cCoVouchID = value;
+					this.SendPropertyChanged("cCoVouchID");
+					this.OncCoVouchIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cExecID", DbType="NVarChar(30)")]
+		public string cExecID
+		{
+			get
+			{
+				return this._cExecID;
+			}
+			set
+			{
+				if ((this._cExecID != value))
+				{
+					this.OncExecIDChanging(value);
+					this.SendPropertyChanging();
+					this._cExecID = value;
+					this.SendPropertyChanged("cExecID");
+					this.OncExecIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cMemo", DbType="NVarChar(255)")]
+		public string cMemo
+		{
+			get
+			{
+				return this._cMemo;
+			}
+			set
+			{
+				if ((this._cMemo != value))
+				{
+					this.OncMemoChanging(value);
+					this.SendPropertyChanging();
+					this._cMemo = value;
+					this.SendPropertyChanged("cMemo");
+					this.OncMemoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_iSrcClosesID", DbType="Int")]
+		public System.Nullable<int> iSrcClosesID
+		{
+			get
+			{
+				return this._iSrcClosesID;
+			}
+			set
+			{
+				if ((this._iSrcClosesID != value))
+				{
+					this.OniSrcClosesIDChanging(value);
+					this.SendPropertyChanging();
+					this._iSrcClosesID = value;
+					this.SendPropertyChanged("iSrcClosesID");
+					this.OniSrcClosesIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ifaresettled_f", DbType="Money NOT NULL")]
+		public decimal ifaresettled_f
+		{
+			get
+			{
+				return this._ifaresettled_f;
+			}
+			set
+			{
+				if ((this._ifaresettled_f != value))
+				{
+					this.Onifaresettled_fChanging(value);
+					this.SendPropertyChanging();
+					this._ifaresettled_f = value;
+					this.SendPropertyChanged("ifaresettled_f");
+					this.Onifaresettled_fChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cEBOrderCode", DbType="NVarChar(30)")]
+		public string cEBOrderCode
+		{
+			get
+			{
+				return this._cEBOrderCode;
+			}
+			set
+			{
+				if ((this._cEBOrderCode != value))
+				{
+					this.OncEBOrderCodeChanging(value);
+					this.SendPropertyChanging();
+					this._cEBOrderCode = value;
+					this.SendPropertyChanged("cEBOrderCode");
+					this.OncEBOrderCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ap_CloseBill_Ap_CloseBills", Storage="_Ap_CloseBill", ThisKey="iID", OtherKey="iID", IsForeignKey=true)]
+		public Ap_CloseBill Ap_CloseBill
+		{
+			get
+			{
+				return this._Ap_CloseBill.Entity;
+			}
+			set
+			{
+				Ap_CloseBill previousValue = this._Ap_CloseBill.Entity;
+				if (((previousValue != value) 
+							|| (this._Ap_CloseBill.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Ap_CloseBill.Entity = null;
+						previousValue.Ap_CloseBills.Remove(this);
+					}
+					this._Ap_CloseBill.Entity = value;
+					if ((value != null))
+					{
+						value.Ap_CloseBills.Add(this);
+						this._iID = value.iID;
+					}
+					else
+					{
+						this._iID = default(int);
+					}
+					this.SendPropertyChanged("Ap_CloseBill");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Ap_CloseBills_extradefine")]
+	public partial class Ap_CloseBills_extradefine : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _cbdefine1;
+		
+		private string _cbdefine2;
+		
+    #region 可扩展性方法定义
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void Oncbdefine1Changing(string value);
+    partial void Oncbdefine1Changed();
+    partial void Oncbdefine2Changing(string value);
+    partial void Oncbdefine2Changed();
+    #endregion
+		
+		public Ap_CloseBills_extradefine()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cbdefine1", DbType="NVarChar(120)")]
+		public string cbdefine1
+		{
+			get
+			{
+				return this._cbdefine1;
+			}
+			set
+			{
+				if ((this._cbdefine1 != value))
+				{
+					this.Oncbdefine1Changing(value);
+					this.SendPropertyChanging();
+					this._cbdefine1 = value;
+					this.SendPropertyChanged("cbdefine1");
+					this.Oncbdefine1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cbdefine2", DbType="NVarChar(120)")]
+		public string cbdefine2
+		{
+			get
+			{
+				return this._cbdefine2;
+			}
+			set
+			{
+				if ((this._cbdefine2 != value))
+				{
+					this.Oncbdefine2Changing(value);
+					this.SendPropertyChanging();
+					this._cbdefine2 = value;
+					this.SendPropertyChanged("cbdefine2");
+					this.Oncbdefine2Changed();
 				}
 			}
 		}

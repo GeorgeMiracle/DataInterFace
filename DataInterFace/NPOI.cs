@@ -399,6 +399,12 @@ namespace DataInterFace
                         pIExcelData.trainPrcie = GetCellValue(sheet.GetRow(2 + i).GetCell(56, MissingCellPolicy.CREATE_NULL_AS_BLANK)).ToString();
                     }
                     //"向客户收取的银行手续费 
+                    if (!string.IsNullOrEmpty(sheet.GetRow(2 + i).GetCell(57, MissingCellPolicy.CREATE_NULL_AS_BLANK).ToString()))
+                    {
+                        bemptyRow = false;
+                        pIExcelData.exchanLossPrice = GetCellValue(sheet.GetRow(2 + i).GetCell(57, MissingCellPolicy.CREATE_NULL_AS_BLANK)).ToString();
+                    }
+                    //"向客户收取的银行手续费 
                     if (!string.IsNullOrEmpty(sheet.GetRow(2 + i).GetCell(58, MissingCellPolicy.CREATE_NULL_AS_BLANK).ToString()))
                     {
                         bemptyRow = false;
@@ -529,6 +535,233 @@ namespace DataInterFace
                 default:
                     return string.Empty;
             }
+        }
+
+        /// <summary>读取excel 到datatable    
+        /// 默认第一行为表头，导入第一个工作表   
+        /// </summary>      
+        /// <param name="strFileName">excel文档路径</param>      
+        /// <returns></returns>      
+        public static DataTable ExcelToDataTable(string strFileName,int rowIndex)
+        {
+            DataTable dt = new DataTable();
+            FileStream file = null;
+            IWorkbook Workbook = null;
+            try
+            {
+
+                using (file = new FileStream(strFileName, FileMode.Open, FileAccess.Read))//C#文件流读取文件
+                {
+                    if (strFileName.ToLower().IndexOf(".xlsx") > 0)
+                        //把xlsx文件中的数据写入Workbook中
+                        Workbook = new XSSFWorkbook(file);
+
+                    else if (strFileName.ToLower().IndexOf(".xls") > 0)
+                        //把xls文件中的数据写入Workbook中
+                        Workbook = new HSSFWorkbook(file);
+
+                    if (Workbook != null)
+                    {
+                        ISheet sheet = Workbook.GetSheetAt(0);//读取第一个sheet
+                        System.Collections.IEnumerator rows = sheet.GetRowEnumerator();
+                        //得到Excel工作表的行 
+                        IRow headerRow = sheet.GetRow(rowIndex);
+                        //得到Excel工作表的总列数  
+                        int cellCount = headerRow.LastCellNum;
+
+                        for (int j = 0; j < cellCount; j++)
+                        {
+                            //得到Excel工作表指定行的单元格  
+                            ICell cell = headerRow.GetCell(j);
+                            if (cell == null)
+                            {
+                                throw new Exception("请使用正确的excel模板！");
+                            }
+                            dt.Columns.Add(cell.ToString());
+                        }
+
+                        for (int i = (rowIndex + 1); i <= sheet.LastRowNum; i++)
+                        {
+                            IRow row = sheet.GetRow(i);
+                            if (row == null)
+                            {
+                                throw new Exception(string.Format("第{0}行，没有数据！", (i + 1)));
+
+                            }
+                            if (row.GetCell(0) == null)
+                            {
+                                return dt;
+                            }
+                            DataRow dataRow = dt.NewRow();
+
+                            for (int j = row.FirstCellNum; j < cellCount; j++)
+                            {
+                                if (row.GetCell(j) != null)
+                                    dataRow[j] = row.GetCell(j).ToString();
+                            }
+                            dt.Rows.Add(dataRow);
+                        }
+                    }
+                    return dt;
+                }
+            }
+
+            catch (Exception ex)
+            {
+                if (file != null)
+                {
+                    file.Close();//关闭当前流并释放资源
+                }
+
+                throw;
+            }
+            finally
+            {
+
+            }
+
+        }
+        /// <summary>   
+        /// 从Excel中获取数据到DataTable   
+        /// </summary>   
+        /// <param name="strFileName">Excel文件全路径(服务器路径)</param>   
+        /// <param name="SheetName">要获取数据的工作表名称</param>   
+        /// <param name="HeaderRowIndex">工作表标题行所在行号(从0开始)</param>   
+        /// <returns></returns>   
+        public static DataTable RenderDataTableFromExcel(string strFileName, int HeaderRowIndex, string SheetName = null)
+        {
+            IWorkbook Workbook = null;
+
+            using (FileStream file = new FileStream(strFileName, FileMode.Open, FileAccess.Read))
+            {
+                if (strFileName.IndexOf(".xlsx") > 0)
+
+                    Workbook = new XSSFWorkbook(file);
+
+                else if (strFileName.IndexOf(".xls") > 0)
+
+                    Workbook = new HSSFWorkbook(file);
+                ISheet sheet = null;
+                if (string.IsNullOrEmpty(SheetName))
+                {
+                    sheet = Workbook.GetSheetAt(0);
+                }
+                else
+                {
+                    sheet = Workbook.GetSheet(SheetName);
+                };
+                return RenderDataTableFromExcel(Workbook, HeaderRowIndex, SheetName);
+            }
+        }
+
+        /// <summary>   
+        /// 从Excel中获取数据到DataTable   
+        /// </summary>   
+        /// <param name="workbook">要处理的工作薄</param>   
+        /// <param name="SheetName">要获取数据的工作表名称</param>   
+        /// <param name="HeaderRowIndex">工作表标题行所在行号(从0开始)</param>   
+        /// <returns></returns>   
+        public static DataTable RenderDataTableFromExcel(IWorkbook workbook, int HeaderRowIndex, string SheetName = null)
+        {
+            ISheet sheet = null;
+            if (string.IsNullOrEmpty(SheetName))
+            {
+                sheet = workbook.GetSheetAt(0);
+            }
+            else
+            {
+                sheet = workbook.GetSheet(SheetName);
+            }
+            DataTable table = new DataTable();
+            try
+            {
+                IRow headerRow = sheet.GetRow(HeaderRowIndex);
+                int cellCount = headerRow.LastCellNum;
+
+                for (int i = headerRow.FirstCellNum; i < cellCount; i++)
+                {
+                    DataColumn column = new DataColumn(headerRow.GetCell(i).StringCellValue);
+                    table.Columns.Add(column);
+                }
+
+                int rowCount = sheet.LastRowNum;
+
+                #region 循环各行各列,写入数据到DataTable
+                for (int i = (sheet.FirstRowNum + 1); i <= sheet.LastRowNum; i++)
+                {
+                    IRow row = sheet.GetRow(i);
+                    DataRow dataRow = table.NewRow();
+                    for (int j = row.FirstCellNum; j < cellCount; j++)
+                    {
+                        ICell cell = row.GetCell(j);
+                        if (cell == null)
+                        {
+                            dataRow[j] = null;
+                        }
+                        else
+                        {
+                            //dataRow[j] = cell.ToString();   
+                            switch (cell.CellType)
+                            {
+                                case CellType.Blank:
+                                    dataRow[j] = null;
+                                    break;
+                                case CellType.Boolean:
+                                    dataRow[j] = cell.BooleanCellValue;
+                                    break;
+                                case CellType.Numeric:
+                                    dataRow[j] = cell.ToString();
+                                    break;
+                                case CellType.String:
+                                    dataRow[j] = cell.StringCellValue;
+                                    break;
+                                case CellType.Error:
+                                    dataRow[j] = cell.ErrorCellValue;
+                                    break;
+                                case CellType.Formula:
+                                default:
+                                    dataRow[j] = "=" + cell.CellFormula;
+                                    break;
+                            }
+                        }
+                    }
+                    table.Rows.Add(dataRow);
+                    //dataRow[j] = row.GetCell(j).ToString();   
+                }
+                #endregion
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                //sheet.Dispose();   
+                workbook = null;
+                sheet = null;
+            }
+            #region 清除最后的空行
+            for (int i = table.Rows.Count - 1; i > 0; i--)
+            {
+                bool isnull = true;
+                for (int j = 0; j < table.Columns.Count; j++)
+                {
+                    if (table.Rows[i][j] != null)
+                    {
+                        if (table.Rows[i][j].ToString() != "")
+                        {
+                            isnull = false;
+                            break;
+                        }
+                    }
+                }
+                if (isnull)
+                {
+                    table.Rows[i].Delete();
+                }
+            }
+            #endregion
+            return table;
         }
     }
 }

@@ -15,6 +15,17 @@ namespace UFDB
                 //uf.GL_accvouch.InsertOnSubmit();
             }
         }
+
+        public static string GetcCodeBySettleType(string type, string Conn)
+        {
+
+            using (UFDataContext uf = new UFDataContext(Conn))
+            {
+                var Ret = uf.ExecuteQuery<string>("select ccode from Ap_SStyleCode where cSettleStyle='" + type + "' and iyear=" + DateTime.Today.Year + " and cFlag='AR'").FirstOrDefault();
+
+                return Ret;
+            }
+        }
         /// <summary>
         /// 获取凭证类别排序号
         /// </summary>

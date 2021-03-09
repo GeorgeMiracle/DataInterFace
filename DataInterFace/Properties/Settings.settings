@@ -18,5 +18,13 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=192.168.0.181;Initial Catalog=UFDATA_998_2019;Persist Security Info=True;User ID=sa</Value>
     </Setting>
+    <Setting Name="UFDATA_106_2018ConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=7.79.52.88;Initial Catalog=UFDATA_106_2018;Persist Security Info=True;User ID=sa;Password=Chary@123&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=7.79.52.88;Initial Catalog=UFDATA_106_2018;Persist Security Info=True;User ID=sa;Password=Chary@123</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

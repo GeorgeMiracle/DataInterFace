@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 20.875, 51.5" name="UF">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 32.5, 51.5" name="UF">
   <DataContextMoniker Name="/UFDataContext" />
   <nestedChildShapes>
     <classShape Id="60052d86-bf13-4bff-9180-3171e65d713e" absoluteBounds="2.875, 0.5, 2, 29.441215413411459">
@@ -56,14 +56,14 @@
         <elementListCompartment Id="551e5ac0-f22b-4426-a7b9-11ea96f9bc26" absoluteBounds="0.51500000000000057, 1.71, 1.9700000000000002, 19.087127685546875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(8.375 : 0.625); (8.375 : 0.4375); (2.59375 : 0.4375); (2.59375 : 11.0735638427734); (2.5 : 11.0735638427734)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(8.375 : 0.625); (8.375 : 0.4375); (2.59375 : 0.4375); (2.59375 : 11.0735638427734); (2.5 : 11.0735638427734)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/UFDataContext/Customer/Customer_SaleBillVouch" />
       <nodes>
         <classShapeMoniker Id="5888cc82-a532-461e-8c4e-1b03b43cd89b" />
         <classShapeMoniker Id="00189ece-8de0-42fc-bb2f-75e5eef62f76" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(13.375 : 11.3177553304036); (12.9375 : 11.3177553304036); (12.9375 : 0.375); (9.52083333333333 : 0.374999999999999 : JumpStart); (9.35416666666667 : 0.375 : JumpEnd); (2.11458533333333 : 0.374999999999999 : JumpStart); (1.94791866666667 : 0.375 : JumpEnd); (1.5 : 0.375); (1.5 : 1.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(13.375 : 11.1648854453125); (12.9375 : 11.1648854453125); (12.9375 : 0.375); (1.5 : 0.375); (1.5 : 1.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/UFDataContext/Department/Department_SaleBillVouch" />
       <nodes>
         <classShapeMoniker Id="8748b205-ac0d-4f6c-a63a-c7ff43e6c2ca" />
@@ -76,14 +76,14 @@
         <elementListCompartment Id="1c650799-7ec2-4415-a941-3b5f29edc85e" absoluteBounds="10.015, 4.585, 1.9700000000000002, 3.010040283203125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(10 : 5.91002014160156); (9.4375 : 5.91002014160156); (9.4375 : 0.1875); (2.031252 : 0.1875); (2.031252 : 1.25)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(10 : 5.91002014160156); (9.4375 : 5.91002014160156); (9.4375 : 0.3125); (2.031252 : 0.3125); (2.031252 : 1.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/UFDataContext/Person/Person_SaleBillVouch" />
       <nodes>
         <classShapeMoniker Id="53086bae-cabe-4dbb-bbcc-d6a9797ba140" />
         <classShapeMoniker Id="00189ece-8de0-42fc-bb2f-75e5eef62f76" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(13.375 : 14.892274890625); (10.40625 : 14.892274890625); (10.40625 : 7.69504028320312)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(13.375 : 14.892274890625); (10.40625 : 14.892274890625); (10.40625 : 7.69504028320312)]" fixedFrom="Algorithm" fixedTo="NotFixed">
       <AssociationMoniker Name="/UFDataContext/Department/Department_Person" />
       <nodes>
         <classShapeMoniker Id="8748b205-ac0d-4f6c-a63a-c7ff43e6c2ca" />
@@ -96,7 +96,7 @@
         <elementListCompartment Id="ca61adac-6f52-4f39-aba2-3df034aa60aa" absoluteBounds="16.515, 5.085, 1.9700000000000002, 1.346893310546875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(16.5 : 5.57844665527344); (15.4375 : 5.57844665527344); (15.4375 : 0.3125); (9.52083333333333 : 0.312499999999999 : JumpStart); (9.35416666666667 : 0.3125 : JumpEnd); (2.031252 : 0.3125); (2.031252 : 1.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(16.5 : 5.57844665527344); (15.4375 : 5.57844665527344); (15.4375 : 0.25); (0.968748 : 0.25); (0.968748 : 1.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/UFDataContext/SaleType/SaleType_SaleBillVouch" />
       <nodes>
         <classShapeMoniker Id="586d1200-151d-4bf2-99f1-21bc89f1413a" />
@@ -119,6 +119,44 @@
       <DataClassMoniker Name="/UFDataContext/SaleBillVouch_extradefine" />
       <nestedChildShapes>
         <elementListCompartment Id="33a60f79-953b-4419-9882-bffac61be097" absoluteBounds="13.39, 3.21, 1.9700000000000002, 3.934010823567708" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7661b429-9c80-4f4e-a114-99e751300395" absoluteBounds="26, 3.125, 2, 23.897392171223959">
+      <DataClassMoniker Name="/UFDataContext/Ap_CloseBill" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a2d1d93f-b578-498c-b88d-b51b4ffc48bf" absoluteBounds="26.015, 3.585, 1.9700000000000002, 23.337392171223957" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(14.375 : 15.1355106608073); (14.375 : 24.4203922526042); (26 : 24.4203922526042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/UFDataContext/Department/Department_Ap_CloseBill" />
+      <nodes>
+        <classShapeMoniker Id="8748b205-ac0d-4f6c-a63a-c7ff43e6c2ca" />
+        <classShapeMoniker Id="7661b429-9c80-4f4e-a114-99e751300395" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="6241dc20-5ddc-4724-8c84-2e3f9a3247cb" absoluteBounds="23.125, 4.375, 2, 4.4940108235677076">
+      <DataClassMoniker Name="/UFDataContext/Ap_CloseBill_extradefine" />
+      <nestedChildShapes>
+        <elementListCompartment Id="292cd1bc-3bc1-4e2b-8f0b-bc09a76951ad" absoluteBounds="23.14, 4.835, 1.9700000000000002, 3.934010823567708" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a89bb4ff-79c4-4083-9092-56a3b5380f2f" absoluteBounds="30.25, 3.25, 2, 9.4834517415364576">
+      <DataClassMoniker Name="/UFDataContext/Ap_CloseBills" />
+      <nestedChildShapes>
+        <elementListCompartment Id="26c3b853-bd6e-457c-9fb9-976755e1f19c" absoluteBounds="30.265, 3.71, 1.9700000000000002, 8.9234517415364571" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(28 : 7.99172587076823); (30.25 : 7.99172587076823)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/UFDataContext/Ap_CloseBill/Ap_CloseBill_Ap_CloseBills" />
+      <nodes>
+        <classShapeMoniker Id="7661b429-9c80-4f4e-a114-99e751300395" />
+        <classShapeMoniker Id="a89bb4ff-79c4-4083-9092-56a3b5380f2f" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="774f51e9-f961-40c2-8d67-ff5333803d7a" absoluteBounds="22.25, 2.125, 2, 1.3525109863281251">
+      <DataClassMoniker Name="/UFDataContext/Ap_CloseBills_extradefine" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5b343b84-aafa-43d3-ba32-7ea91945197d" absoluteBounds="22.265, 2.585, 1.9700000000000002, 0.792510986328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>
