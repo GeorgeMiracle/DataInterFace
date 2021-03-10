@@ -71,7 +71,7 @@
             this.btnInvoiceAdd.Name = "btnInvoiceAdd";
             this.btnInvoiceAdd.Size = new System.Drawing.Size(75, 23);
             this.btnInvoiceAdd.TabIndex = 7;
-            this.btnInvoiceAdd.Text = "生成发票";
+            this.btnInvoiceAdd.Text = "生成收款单";
             this.btnInvoiceAdd.UseVisualStyleBackColor = true;
             this.btnInvoiceAdd.Click += new System.EventHandler(this.btnInvoiceAdd_Click_1);
             // 

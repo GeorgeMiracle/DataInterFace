@@ -24,6 +24,8 @@ namespace DataInterFace
             "收款金额",
             "结算方式编码",
             "摘要",
+            "收款日期",
+
 
         };
 
@@ -44,7 +46,7 @@ namespace DataInterFace
             {
                 arHeaders.Add(new ArHeader()
                 {
-                    vouchDate = clsDataConvert.ToDateTime(dt.Rows[i]["单据日期"]),
+                    vouchDate = clsDataConvert.ToDateTime(dt.Rows[i]["收款日期"]),
                     cuscode = clsDataConvert.ToString(dt.Rows[i]["客户编号"]),
                     depcode = clsDataConvert.ToString(dt.Rows[i]["部门编号"]),
                     personcode = clsDataConvert.ToString(dt.Rows[i]["业务员编号"]),
@@ -116,7 +118,7 @@ namespace DataInterFace
                     ap_CloseBill.cVouchType = item.First().arPrice > 0 ? "48" : "49";
                     ap_CloseBill.cVouchID = item.First().arPrice > 0 ? clsGetID.getcode(DbManager.U8Conn, "RR") : clsGetID.getcode(DbManager.U8Conn, "RP");
                     ap_CloseBill.dVouchDate = item.Key.vouchDate;
-                    ap_CloseBill.iPeriod = Convert.ToByte(Convert.ToDateTime(item.Key.vouchDate).Month);
+                    ap_CloseBill.iPeriod = Convert.ToByte(item.Key.vouchDate.Month);
                     ap_CloseBill.cDwCode = item.Key.cuscode;
                     ap_CloseBill.cPerson = item.Key.personcode;
                     ap_CloseBill.cDeptCode = item.Key.depcode;
