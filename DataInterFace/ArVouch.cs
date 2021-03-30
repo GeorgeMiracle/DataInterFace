@@ -25,7 +25,7 @@ namespace DataInterFace
             "结算方式编码",
             "摘要",
             "收款日期",
-
+            "交易流水号",
 
         };
 
@@ -46,7 +46,7 @@ namespace DataInterFace
             {
                 arHeaders.Add(new ArHeader()
                 {
-                    vouchDate = clsDataConvert.ToDateTime(dt.Rows[i]["收款日期"]),
+                    vouchDate =Convert.ToDateTime( dt.Rows[i]["收款日期"]),
                     cuscode = clsDataConvert.ToString(dt.Rows[i]["客户编号"]),
                     depcode = clsDataConvert.ToString(dt.Rows[i]["部门编号"]),
                     personcode = clsDataConvert.ToString(dt.Rows[i]["业务员编号"]),
@@ -57,6 +57,8 @@ namespace DataInterFace
                     xm = clsDataConvert.ToString(dt.Rows[i]["项目编码"]),
                     itemName = clsDataConvert.ToString(dt.Rows[i]["项目"]),
                     PICode = clsDataConvert.ToString(dt.Rows[i]["订单号"]),
+                    JSCode = clsDataConvert.ToString(dt.Rows[i]["交易流水号"]),
+
 
                 });
             }
@@ -65,6 +67,11 @@ namespace DataInterFace
             int row = 1;
             foreach (var ar in arHeaders)
             {
+                if (UFDB.VoucherCheck.ArchiveExists("ap_closebill", "cVouchID",ar.JSCode,DbManager.U8Conn))
+                {
+                    throw new Exception(string.Format("第{0}行,交易流水号{1} 已经在系统中存在", row.ToString(),ar.JSCode));
+
+                }
                 if (string.IsNullOrEmpty(ar.cuscode))
                 {
                     throw new Exception(string.Format("第{0}行,客户编码不能为空", row.ToString()));
@@ -109,7 +116,7 @@ namespace DataInterFace
         {
             using (UFDataContext uf = new UFDataContext(DbManager.U8Conn))
             {
-                var groupedAr = arHeaders.GroupBy(x => new { x.cuscode, x.PICode, x.vouchDate, x.personcode, x.depcode, x.jsWay, x.degist });
+                var groupedAr = arHeaders.GroupBy(x => new {x.JSCode, x.cuscode, x.vouchDate, x.personcode, x.depcode, x.jsWay, x.degist });
                 foreach (var item in groupedAr)
                 {
                     decimal sumPrice = item.Sum(x => x.arPrice);
@@ -117,6 +124,7 @@ namespace DataInterFace
                     ap_CloseBill.iID = Convert.ToInt32(clsGetID.getAutoId(DbManager.U8Conn, "SK", DbManager.U8Conn.Split('_')[1], 1));
                     ap_CloseBill.cVouchType = item.First().arPrice > 0 ? "48" : "49";
                     ap_CloseBill.cVouchID = item.First().arPrice > 0 ? clsGetID.getcode(DbManager.U8Conn, "RR") : clsGetID.getcode(DbManager.U8Conn, "RP");
+                    ap_CloseBill.cDefine1= item.Key.JSCode; 
                     ap_CloseBill.dVouchDate = item.Key.vouchDate;
                     ap_CloseBill.iPeriod = Convert.ToByte(item.Key.vouchDate.Month);
                     ap_CloseBill.cDwCode = item.Key.cuscode;
@@ -163,6 +171,7 @@ namespace DataInterFace
                         arDetails.Add(new Ap_CloseBills()
                         {
                             ID = Convert.ToInt32(clsGetID.getAutoId(DbManager.U8Conn, "SK", DbManager.U8Conn.Split('_')[1], 0)),
+                            
                             bPrePay = false,
                             iType = 0,
                             cCusVen = items.cuscode,
@@ -180,9 +189,9 @@ namespace DataInterFace
                             cXmClass = "97",
                             cXm = items.xm,
                             cItemName = items.itemName,
-
                             cDepCode = items.depcode,
-                            cPersonCode=items.personcode
+                            cPersonCode=items.personcode,
+                            cOrderID=items.PICode,
                             //cDefine22 = item.cinvName
 
                         });
@@ -215,6 +224,10 @@ namespace DataInterFace
 
     public class ArHeader
     {
+        /// <summary>
+        /// 交易流水号
+        /// </summary>
+        public string JSCode { get; set; }
 
         public string PICode { get; set; }
         public DateTime vouchDate { get; set; }

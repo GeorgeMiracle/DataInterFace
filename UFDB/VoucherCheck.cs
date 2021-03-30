@@ -138,7 +138,7 @@ namespace UFDB
         /// <param name="tableName">表名称</param>
         /// <param name="code">检测列名</param>
         /// <returns></returns>
-        private static bool ArchiveExists(string tableName, string checkColName, string code,string Conn)
+        public static bool ArchiveExists(string tableName, string checkColName, string code,string Conn)
         {
             using (UFDataContext uf = new UFDataContext(Conn))
             {

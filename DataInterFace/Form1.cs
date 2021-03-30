@@ -236,6 +236,7 @@ namespace DataInterFace
         private void VoucherInsert()
         {
             var data = dataGridView1.DataSource as List<PIExcelData>;
+
             using (UFDataContext uf = new UFDataContext(DbManager.U8Conn))
             {
                 Dictionary<string, string> piNumDic = new Dictionary<string, string>();
@@ -343,7 +344,7 @@ namespace DataInterFace
                                 string sfInv = uf.Inventory.FirstOrDefault(x => x.cInvName == data[i].ppServiceInvName && x.cInvCCode == "02").cInvCode;
 
 
-                                InsertVouchBody(uf, ifatherid, data[i].cdefine1, 0, ecInv, data[i].ppServiceInvName, data[i].itemcode, data[i].itemName, 1, Convert.ToDecimal(data[i].ECPrice), taxRate.ToString());
+                                InsertVouchBody(uf, ifatherid, data[i].cdefine1, 0, ecInv, data[i].ppServiceInvName, data[i].itemcode, data[i].itemName, 1, Convert.ToDecimal(data[i].ECPrice), taxRate.ToString(),true);
                                 InsertVouchBodySFEC(uf, ifatherid, data[i].cdefine1, tax, sfInv, data[i].ppServiceInvName, data[i].itemcode, data[i].itemName, 1, Convert.ToDecimal(data[i].SFPrice), taxRate.ToString());
 
 
@@ -361,7 +362,7 @@ namespace DataInterFace
 
                                     string ecInv = uf.Inventory.FirstOrDefault(x => x.cInvName == data[i].dsdfInvName && x.cInvCCode == "01").cInvCode;
                                     
-                                    InsertVouchBody(uf, ifatherid, data[i].cdefine1, taxRate, ecInv, data[i].dsdfInvName, data[i].itemcode, data[i].itemName, 1, Convert.ToDecimal(data[i].ECPrice), StrtaxRate, dsdf);
+                                    InsertVouchBody(uf, ifatherid, data[i].cdefine1, taxRate, ecInv, data[i].dsdfInvName, data[i].itemcode, data[i].itemName, 1, Convert.ToDecimal(data[i].ECPrice), StrtaxRate, true);
                                     
 
                                 }//sf金额不为空
@@ -542,7 +543,9 @@ namespace DataInterFace
                                 h_PIM.dMakeDateEx = Convert.ToDateTime(items.appDate);
                                 h_PIM.dMakeDate = DateTime.Now;
                                 h_PIM.belongMonth = items.belongMonth;
-                                h_PIM.TotalAmount = Convert.ToDecimal(item.First().exchangeReate) == 0 ? (item.Sum(x => Convert.ToDecimal(x.Sub_total)) + item.Sum(x => Convert.ToDecimal(x.bankServicePrice)) + item.Sum(x => Convert.ToDecimal(x.exchanLossPrice))) : (item.Sum(x => Convert.ToDecimal(Sub_total)) + item.Sum(x => Convert.ToDecimal(x.bankServicePrice)) + item.Sum(x => Convert.ToDecimal(x.exchanLossPrice))) / Convert.ToDecimal(item.First().exchangeReate);
+                               
+                                h_PIM.TotalAmount = Convert.ToDecimal(item.First().exchangeReate) == 0 ? (item.Sum(x => Convert.ToDecimal(x.Sub_total)) + item.Sum(x => Convert.ToDecimal(x.bankServicePrice)) + item.Sum(x => Convert.ToDecimal(x.exchanLossPrice))) : (item.Sum(x => Convert.ToDecimal(x.Sub_total)) + item.Sum(x => Convert.ToDecimal(x.bankServicePrice)) + item.Sum(x => Convert.ToDecimal(x.exchanLossPrice))) / Convert.ToDecimal(item.First().exchangeReate);
+                               
                                 h_PIM.iswfcontrolled = 0;
                                 h_PIM.UAPRuntime_RowNO = 1;
                                 h_PIM.ID = guid;
@@ -695,7 +698,9 @@ namespace DataInterFace
                             h_PIM.dMakeDateEx = Convert.ToDateTime(item.First().appDate);
                             h_PIM.dMakeDate = DateTime.Now;
                             h_PIM.belongMonth = item.First().belongMonth;
+                           
                             h_PIM.TotalAmount = Convert.ToDecimal(item.First().exchangeReate) == 0 ? (item.Sum(x=>Convert.ToDecimal(x.Sub_total)) + item.Sum(x=>Convert.ToDecimal( x.bankServicePrice) ) + item.Sum(x => Convert.ToDecimal(x.exchanLossPrice))) :  (item.Sum(x=>Convert.ToDecimal(Sub_total) )+ item.Sum(x=>Convert.ToDecimal(x.bankServicePrice)) + item.Sum(x => Convert.ToDecimal(x.exchanLossPrice)))/ Convert.ToDecimal(item.First().exchangeReate);
+                            
                             h_PIM.iswfcontrolled = 0;
                             h_PIM.UAPRuntime_RowNO = 1;
                             h_PIM.ID = guid;
@@ -1286,6 +1291,8 @@ namespace DataInterFace
                 {
                     string id = clsDataConvert.ToString(table.Rows[i]["ID"]);
                     string data = clsDataConvert.ToString(table.Rows[i]["Company"]);
+                    string Attention = clsDataConvert.ToString(table.Rows[i]["Attention"]);
+
                     string Address = clsDataConvert.ToString(table.Rows[i]["Address"]);
                     string Telephone = clsDataConvert.ToString(table.Rows[i]["Telephone"]);
                     string cNo = clsDataConvert.ToString(table.Rows[i]["piNum"]);
@@ -1314,6 +1321,7 @@ namespace DataInterFace
                     designer.SetDataSource("ExchageDate", ExchageDate);
                     designer.SetDataSource("totalAmount", totalAmount);
                     designer.SetDataSource("SSYF", belongMonth);
+                    designer.SetDataSource("Attention", Attention);
 
                     designer.SetDataSource(dataTable);
                     designer.Process();

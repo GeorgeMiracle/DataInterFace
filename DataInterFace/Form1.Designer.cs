@@ -91,6 +91,8 @@
             this.btnInvoiceAdd = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtMaker = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btnpiwB = new System.Windows.Forms.Button();
             this.btnExportPi = new System.Windows.Forms.Button();
@@ -101,10 +103,6 @@
             this.dtpS = new System.Windows.Forms.DateTimePicker();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.txtfileName = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtMaker = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -570,8 +568,6 @@
             // 
             this.panel1.Controls.Add(this.txtMaker);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Controls.Add(this.btnpiwB);
             this.panel1.Controls.Add(this.btnExportPi);
@@ -591,6 +587,22 @@
             this.panel1.Size = new System.Drawing.Size(1484, 125);
             this.panel1.TabIndex = 4;
             // 
+            // txtMaker
+            // 
+            this.txtMaker.Location = new System.Drawing.Point(553, 80);
+            this.txtMaker.Name = "txtMaker";
+            this.txtMaker.Size = new System.Drawing.Size(126, 21);
+            this.txtMaker.TabIndex = 18;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(506, 83);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(41, 12);
+            this.label4.TabIndex = 17;
+            this.label4.Text = "制单人";
+            // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
@@ -599,14 +611,14 @@
             "英文PI交行（89811）",
             "英文PI-交行（3954）",
             "英文PI-汇丰"});
-            this.comboBox1.Location = new System.Drawing.Point(1086, 79);
+            this.comboBox1.Location = new System.Drawing.Point(907, 79);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 20);
             this.comboBox1.TabIndex = 14;
             // 
             // btnpiwB
             // 
-            this.btnpiwB.Location = new System.Drawing.Point(987, 78);
+            this.btnpiwB.Location = new System.Drawing.Point(808, 78);
             this.btnpiwB.Name = "btnpiwB";
             this.btnpiwB.Size = new System.Drawing.Size(75, 23);
             this.btnpiwB.TabIndex = 13;
@@ -616,7 +628,7 @@
             // 
             // btnExportPi
             // 
-            this.btnExportPi.Location = new System.Drawing.Point(881, 78);
+            this.btnExportPi.Location = new System.Drawing.Point(702, 78);
             this.btnExportPi.Name = "btnExportPi";
             this.btnExportPi.Size = new System.Drawing.Size(75, 23);
             this.btnExportPi.TabIndex = 12;
@@ -679,38 +691,6 @@
             this.txtfileName.Name = "txtfileName";
             this.txtfileName.Size = new System.Drawing.Size(345, 21);
             this.txtfileName.TabIndex = 4;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(541, 80);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(126, 21);
-            this.textBox1.TabIndex = 16;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(506, 83);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(29, 12);
-            this.label3.TabIndex = 15;
-            this.label3.Text = "客户";
-            // 
-            // txtMaker
-            // 
-            this.txtMaker.Location = new System.Drawing.Point(732, 80);
-            this.txtMaker.Name = "txtMaker";
-            this.txtMaker.Size = new System.Drawing.Size(126, 21);
-            this.txtMaker.TabIndex = 18;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(685, 83);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 12);
-            this.label4.TabIndex = 17;
-            this.label4.Text = "制单人";
             // 
             // Form1
             // 
@@ -802,8 +782,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn exchanLossPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn bankServicePrice;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtMaker;
         private System.Windows.Forms.Label label4;
     }
