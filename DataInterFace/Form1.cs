@@ -510,11 +510,13 @@ namespace DataInterFace
                     }
 
                 }
-                var groupedData = data.GroupBy(x => x.mergeState);
+                //根据开票客户和合并状态合并
+                var groupedData = data.GroupBy(x => new { x.mergeState,x.cusname });
                 foreach (var item in groupedData)
                 {
 
-                    if (string.IsNullOrEmpty(item.Key))
+                    //不是合并状态的
+                    if (string.IsNullOrEmpty(item.Key.mergeState))
                     {
                         foreach (var items in item)
                         {
@@ -543,7 +545,9 @@ namespace DataInterFace
                                 h_PIM.dMakeDateEx = Convert.ToDateTime(items.appDate);
                                 h_PIM.dMakeDate = DateTime.Now;
                                 h_PIM.belongMonth = items.belongMonth;
-                               
+                                
+
+
                                 h_PIM.TotalAmount = Convert.ToDecimal(item.First().exchangeReate) == 0 ? (item.Sum(x => Convert.ToDecimal(x.Sub_total)) + item.Sum(x => Convert.ToDecimal(x.bankServicePrice)) + item.Sum(x => Convert.ToDecimal(x.exchanLossPrice))) : (item.Sum(x => Convert.ToDecimal(x.Sub_total)) + item.Sum(x => Convert.ToDecimal(x.bankServicePrice)) + item.Sum(x => Convert.ToDecimal(x.exchanLossPrice))) / Convert.ToDecimal(item.First().exchangeReate);
                                
                                 h_PIM.iswfcontrolled = 0;
@@ -673,6 +677,7 @@ namespace DataInterFace
                     }
                     else
                     {
+                        //是合并状态的 表头取分组的第一个元素的数据
                         if (!string.IsNullOrEmpty(item.First().Item1))
                         {
                             int bWB = 0;
@@ -698,7 +703,7 @@ namespace DataInterFace
                             h_PIM.dMakeDateEx = Convert.ToDateTime(item.First().appDate);
                             h_PIM.dMakeDate = DateTime.Now;
                             h_PIM.belongMonth = item.First().belongMonth;
-                           
+
                             h_PIM.TotalAmount = Convert.ToDecimal(item.First().exchangeReate) == 0 ? (item.Sum(x=>Convert.ToDecimal(x.Sub_total)) + item.Sum(x=>Convert.ToDecimal( x.bankServicePrice) ) + item.Sum(x => Convert.ToDecimal(x.exchanLossPrice))) :  (item.Sum(x=>Convert.ToDecimal(Sub_total) )+ item.Sum(x=>Convert.ToDecimal(x.bankServicePrice)) + item.Sum(x => Convert.ToDecimal(x.exchanLossPrice)))/ Convert.ToDecimal(item.First().exchangeReate);
                             
                             h_PIM.iswfcontrolled = 0;
